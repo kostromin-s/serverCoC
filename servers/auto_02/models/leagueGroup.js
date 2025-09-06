@@ -22,6 +22,5 @@ const LeagueGroupSchema = new mongoose.Schema(
 LeagueGroupSchema.index({ season: 1 }, { unique: true });
 
 // Export model
-export const LeagueGroup =
-  mongoose.models.LeagueGroup ||
-  mongoose.model("LeagueGroup", LeagueGroupSchema);
+const LeagueGroup = mongoose.model("LeagueGroup", LeagueGroupSchema);
+export default LeagueGroup;
