@@ -19,8 +19,6 @@ async function loopSaveAllianceData() {
     } catch (err) {
       console.error("❌ Error in saveAllianceData:", err);
     }
-    // auto ping every 5 seconds
-    await axios.get(process.env.BE_URL);
     await new Promise((resolve) => setTimeout(resolve, 5000)); // Delay 5 giây trước khi lặp lại
   }
 }
@@ -29,8 +27,21 @@ app.get("/", (req, res) => {
   res.send("Server is running ✅");
 });
 
+function startAutoPing() {
+  const url = process.env.URL_PING;
+  if (!url) return;
+  setInterval(async () => {
+    try {
+      await axios.get(url);
+      console.log(`Pinged ${url} at ${new Date().toISOString()}`);
+    } catch (err) {
+      console.error(`Ping failed: ${err.message}`);
+    }
+  }, 5 * 60 * 1000); // 5 phút
+}
+
 // Khởi động vòng lặp lưu dữ liệu
 loopSaveAllianceData();
-
+startAutoPing();
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
