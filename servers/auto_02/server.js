@@ -1,6 +1,8 @@
 import express from "express";
 import connectDB from "./config/connectDB.js";
 import { saveAllianceData } from "./controllers/saveData.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,6 +20,8 @@ async function loopSaveAllianceData() {
       console.error("❌ Error in saveAllianceData:", err);
     }
     // Có thể thêm delay nếu muốn, ví dụ: await new Promise(r => setTimeout(r, 1000));
+
+    await new Promise((resolve) => setTimeout(resolve, 5000)); // Delay 5 giây trước khi lặp lại
   }
 }
 

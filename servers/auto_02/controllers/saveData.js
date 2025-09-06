@@ -9,9 +9,11 @@ import {
   getCurrentWar,
   getPlayerByTag,
 } from "./cocController.js";
-import { DelayNode } from "./cocController.js";
-import { get } from "mongoose";
-import e from "express";
+
+// Hàm delay
+function DelayNode(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 // Lưu hoặc cập nhật dữ liệu clan
 export async function saveClanData(clan) {
