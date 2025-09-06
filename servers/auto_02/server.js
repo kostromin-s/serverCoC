@@ -6,14 +6,9 @@ import axios from "axios";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 // Kết nối MongoDB
 await connectDB();
-
-app.get("/", (req, res) => {
-  res.send("Server is running");
-});
 
 // Hàm lặp lại liên tục
 async function loopSaveAllianceData() {
@@ -25,14 +20,17 @@ async function loopSaveAllianceData() {
       console.error("❌ Error in saveAllianceData:", err);
     }
     // auto ping every 5 seconds
-    await axios.get(process.env.URL_PING);
+    await axios.get(process.env.BE_URL);
     await new Promise((resolve) => setTimeout(resolve, 5000)); // Delay 5 giây trước khi lặp lại
   }
 }
 
+app.get("/", (req, res) => {
+  res.send("Server is running ✅");
+});
+
 // Khởi động vòng lặp lưu dữ liệu
 loopSaveAllianceData();
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
