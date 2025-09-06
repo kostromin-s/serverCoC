@@ -2,6 +2,7 @@ import express from "express";
 import connectDB from "./config/connectDB.js";
 import { saveAllianceData } from "./controllers/saveData.js";
 import dotenv from "dotenv";
+import axios from "axios";
 dotenv.config();
 
 const app = express();
@@ -9,6 +10,10 @@ const PORT = process.env.PORT || 3000;
 
 // Kết nối MongoDB
 await connectDB();
+
+app.get("/", (req, res) => {
+  res.send("Server is running");
+});
 
 // Hàm lặp lại liên tục
 async function loopSaveAllianceData() {
@@ -19,8 +24,8 @@ async function loopSaveAllianceData() {
     } catch (err) {
       console.error("❌ Error in saveAllianceData:", err);
     }
-    // Có thể thêm delay nếu muốn, ví dụ: await new Promise(r => setTimeout(r, 1000));
-
+    // auto ping every 5 seconds
+    await axios.get(process.env.URL_PING);
     await new Promise((resolve) => setTimeout(resolve, 5000)); // Delay 5 giây trước khi lặp lại
   }
 }
