@@ -75,48 +75,51 @@ export async function saveAllianceData() {
 
   for (const member of alliances.members) {
     const clan = await getClanByTag(member);
-    saveClanData(clan);
+    await saveClanData(clan); // thêm await
     await DelayNode(120);
+
     const memberList = clan.memberList;
     for (const player of memberList) {
       const playerData = await getPlayerByTag(player.tag);
-      savePlayerData(playerData);
+      await savePlayerData(playerData); // thêm await
       await DelayNode(120);
     }
-  }
 
-  const war7day = await getCurrentWarLeagueGroup(member);
-  if (war7day && war7day.state === "inWar") {
-    for (const round of war7day.rounds) {
-      for (const war of round.warTags) {
-        if (war === "#0") continue;
-        const newDataWarDetails = await getWarLeagueWarDetails(war);
-        console.log(newDataWarDetails);
-        await DelayNode(120);
-        if (
-          newDataWarDetails.clan.tag === member ||
-          newDataWarDetails.opponent.tag === member
-        ) {
-          if (newDataWarDetails.clan.tag === member) {
-            saveWarDetailData(newDataWarDetails);
-          } else {
-            [newDataWarDetails.clan, newDataWarDetails.opponent] = [
-              newDataWarDetails.opponent,
-              newDataWarDetails.clan,
-            ];
-            saveWarDetailData(newDataWarDetails);
+    const war7day = await getCurrentWarLeagueGroup(member);
+    if (war7day && war7day.state === "inWar") {
+      for (const round of war7day.rounds) {
+        for (const war of round.warTags) {
+          if (war === "#0") continue;
+
+          const newDataWarDetails = await getWarLeagueWarDetails(war);
+          console.log(newDataWarDetails);
+          await DelayNode(120);
+
+          if (
+            newDataWarDetails.clan.tag === member ||
+            newDataWarDetails.opponent.tag === member
+          ) {
+            if (newDataWarDetails.clan.tag === member) {
+              await saveWarDetailData(newDataWarDetails); // thêm await
+            } else {
+              [newDataWarDetails.clan, newDataWarDetails.opponent] = [
+                newDataWarDetails.opponent,
+                newDataWarDetails.clan,
+              ];
+              await saveWarDetailData(newDataWarDetails); // thêm await
+            }
           }
         }
       }
-    }
-  } else {
-    const currentWar = await getCurrentWar(member);
-    if (currentWar.state === "notInWar") {
-      await DelayNode(120);
-      console.log("Clan hiện không trong war");
-      return;
     } else {
-      saveWarDetailData(currentWar);
+      const currentWar = await getCurrentWar(member);
+      if (currentWar.state === "notInWar") {
+        await DelayNode(120);
+        console.log("Clan hiện không trong war");
+        continue; // dùng continue thay vì return -> xử lý tiếp clan khác
+      } else {
+        await saveWarDetailData(currentWar); // thêm await
+      }
     }
   }
 }
