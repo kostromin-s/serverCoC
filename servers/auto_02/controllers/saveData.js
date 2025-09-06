@@ -74,7 +74,8 @@ export async function saveAllianceData() {
     return;
   }
 
-  for (const member of alliances.members) {
+  for (const clanmember of alliances.members) {
+    const member = clanmember.tag;
     const clan = await getClanByTag(member);
     await saveClanData(clan); // thêm await
     await DelayNode(120);
