@@ -57,7 +57,8 @@ const ClanSchema = new mongoose.Schema({
   warTies: Number,
   warLosses: Number,
   isFamilyFriendly: Boolean,
-  members: [MemberSchema],
+  members: Number,
+  memberList: [MemberSchema],
   labels: [
     {
       id: Number,
