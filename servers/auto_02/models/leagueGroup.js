@@ -19,7 +19,7 @@ const LeagueGroupSchema = new mongoose.Schema(
 );
 
 // index theo season (unique)
-LeagueGroupSchema.index({ season: 1 }, { unique: true });
+LeagueGroupSchema.index({ season: 1, clanTag: 1 }, { unique: true });
 
 // Export model
 const LeagueGroup = mongoose.model("LeagueGroup", LeagueGroupSchema);
