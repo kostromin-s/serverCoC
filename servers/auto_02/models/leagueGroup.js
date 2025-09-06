@@ -9,7 +9,6 @@ const LeagueGroupSchema = new mongoose.Schema(
     // Mỗi round lưu 1 trận bạn quan tâm
     rounds: [
       {
-        warTag: { type: String, required: true }, // tag war để join WarDetail
         clanTag: { type: String, required: true }, // tag clan bạn tham gia
         opponentTag: { type: String, required: true }, // tag clan đối thủ
         endTime: { type: Date, required: true }, // dùng để tìm war chính xác

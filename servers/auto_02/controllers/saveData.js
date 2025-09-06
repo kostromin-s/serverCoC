@@ -160,7 +160,6 @@ export async function saveAllianceData() {
               await saveWarData(newDataWarDetails);
             }
             rounds.push({
-              warTag,
               clanTag: newDataWarDetails.clan.tag,
               opponentTag: newDataWarDetails.opponent.tag,
               endTime: parseCoCDate(newDataWarDetails.endTime),
