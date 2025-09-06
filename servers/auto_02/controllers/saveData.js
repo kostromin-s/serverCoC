@@ -125,9 +125,7 @@ export async function saveAllianceData() {
     if (war7day && war7day.state === "inWar") {
       // Nếu war7day có trường datetime thì parse
       const rounds = [];
-      if (war7day.startTime)
-        war7day.startTime = parseCoCDate(war7day.startTime);
-      if (war7day.endTime) war7day.endTime = parseCoCDate(war7day.endTime);
+
       for (const round of war7day.rounds) {
         for (const war of round.warTags) {
           if (war === "#0") continue;
@@ -163,7 +161,7 @@ export async function saveAllianceData() {
             rounds.push({
               clanTag: newDataWarDetails.clan.tag,
               opponentTag: newDataWarDetails.opponent.tag,
-              endTime: parseCoCDate(newDataWarDetails.endTime),
+              endTime: newDataWarDetails.endTime,
             });
           }
         }
@@ -199,3 +197,19 @@ export async function saveAllianceData() {
     }
   }
 }
+
+// Hôm nay ngày buồn tháng xấu
+// Kính cẩn cầu xin tinh oan cắt gọn
+// Ái luyến hóa không
+// Phong long tiêu tán
+// Đào hoa tiêu trừ
+// Thiên môn chứng giám
+// Trời cao nhân từ
+// Dung nhan tuấn tú
+// Tướng mạo uy phong
+// Tâm cơ hèn nhát
+// Có mà như không
+// Ông tơ bà nguyệt
+// Ái lực vô biên
+// Xin cho được sớm
+// Đứt đoạn tình duyên
