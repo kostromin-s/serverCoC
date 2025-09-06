@@ -17,14 +17,26 @@ function DelayNode(ms) {
 
 // Chuyển đổi định dạng ngày tháng từ CoC sang Date object
 function parseCoCDate(dateStr) {
+  if (!dateStr) return null; // bỏ qua nếu không có dữ liệu
+  if (dateStr instanceof Date) return dateStr; // đã là Date thì giữ nguyên
+  if (typeof dateStr !== "string") return null; // nếu không phải string thì bỏ qua
+
   // format CoC: YYYYMMDDTHHmmss.SSSZ
-  // ví dụ: 20250904T063557.000Z
   return new Date(
     dateStr.replace(
       /(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2}).000Z/,
       "$1-$2-$3T$4:$5:$6.000Z"
     )
   );
+}
+
+function normalizeWarDates(war) {
+  if (!war) return war;
+  if (war.preparationStartTime)
+    war.preparationStartTime = parseCoCDate(war.preparationStartTime);
+  if (war.startTime) war.startTime = parseCoCDate(war.startTime);
+  if (war.endTime) war.endTime = parseCoCDate(war.endTime);
+  return war;
 }
 
 // Lưu hoặc cập nhật dữ liệu clan
@@ -55,17 +67,14 @@ export async function savePlayerData(player) {
 
 //Lưu dữ liệu war
 export async function saveWarData(war) {
-  // Parse các trường datetime trước khi lưu
-  if (war.preparationStartTime)
-    war.preparationStartTime = parseCoCDate(war.preparationStartTime);
-  if (war.startTime) war.startTime = parseCoCDate(war.startTime);
-  if (war.endTime) war.endTime = parseCoCDate(war.endTime);
+  war = normalizeWarDates(war);
 
   const query = {
     "clan.tag": war.clan?.tag,
     "opponent.tag": war.opponent?.tag,
     endTime: war.endTime,
   };
+
   const oldWar = await WarDetail.findOne(query);
   if (!oldWar) {
     const newWar = new WarDetail(war);
