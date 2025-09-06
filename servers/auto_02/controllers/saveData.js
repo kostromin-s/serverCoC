@@ -55,15 +55,15 @@ export async function saveClanData(clan) {
 
 // Lưu hoặc cập nhật dữ liệu player
 export async function savePlayerData(player) {
-  const oldData = await PlayerSV01.findOne({ tag: player.tag });
-  if (!oldData) {
-    const newPlayer = new PlayerSV01(player);
-    await newPlayer.save();
-    console.log(`Player ${player.name} saved.`);
-  } else {
-    await PlayerSV01.updateOne({ tag: player.tag }, player);
-    console.log(`Player ${player.name} updated.`);
-  }
+  // const oldData = await PlayerSV01.findOne({ tag: player.tag });
+  // if (!oldData) {
+  //   const newPlayer = new PlayerSV01(player);
+  //   await newPlayer.save();
+  //   console.log(`Player ${player.name} saved.`);
+  // } else {
+  //   await PlayerSV01.updateOne({ tag: player.tag }, player);
+  //   console.log(`Player ${player.name} updated.`);
+  // }
 }
 
 //Lưu dữ liệu war
@@ -110,6 +110,7 @@ export async function saveAllianceData() {
     await DelayNode(120);
 
     const memberList = clan.memberList;
+    const playerOfclan = [];
     for (const player of memberList) {
       // Nếu player có trường datetime thì parse trước khi lưu
       if (player.joinedDate)
@@ -117,9 +118,15 @@ export async function saveAllianceData() {
       const playerData = await getPlayerByTag(player.tag);
       if (playerData.joinedDate)
         playerData.joinedDate = parseCoCDate(playerData.joinedDate);
-      await savePlayerData(playerData);
+      await playerOfclan.push(playerData);
       await DelayNode(120);
     }
+    await PlayerSV01.updateOne(
+      { clantag: clan.tag },
+      { clantag: clan.tag, player: playerOfclan },
+      { upsert: true }
+    );
+    console.log(`Player of clan ${clan.name} updated.`);
 
     const war7day = await getCurrentWarLeagueGroup(member);
     if (war7day && war7day.state === "inWar") {
