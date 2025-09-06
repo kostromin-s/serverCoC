@@ -123,6 +123,7 @@ export async function saveAllianceData() {
     const war7day = await getCurrentWarLeagueGroup(member);
     if (war7day && war7day.state === "inWar") {
       // Nếu war7day có trường datetime thì parse
+      const rounds = [];
       if (war7day.startTime)
         war7day.startTime = parseCoCDate(war7day.startTime);
       if (war7day.endTime) war7day.endTime = parseCoCDate(war7day.endTime);
@@ -158,8 +159,24 @@ export async function saveAllianceData() {
               ];
               await saveWarData(newDataWarDetails);
             }
+            rounds.push({
+              warTag,
+              clanTag: newDataWarDetails.clan.tag,
+              opponentTag: newDataWarDetails.opponent.tag,
+              endTime: parseCoCDate(newDataWarDetails.endTime),
+            });
           }
         }
+        await LeagueGroup.updateOne(
+          { season: war7day.season },
+          {
+            state: war7day.state,
+            season: war7day.season,
+            rounds,
+          },
+          { upsert: true }
+        );
+        console.log(`LeagueGroup ${war7day.season} updated with rounds.`);
       }
     } else {
       const currentWar = await getCurrentWar(member);
