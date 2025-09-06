@@ -5,7 +5,7 @@ const LeagueGroupSchema = new mongoose.Schema(
   {
     state: { type: String, required: true },
     season: { type: String, required: true },
-
+    clanTag: { type: String, required: true },
     // Mỗi round lưu 1 trận bạn quan tâm
     rounds: [
       {

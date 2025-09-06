@@ -166,10 +166,11 @@ export async function saveAllianceData() {
           }
         }
         await LeagueGroup.updateOne(
-          { season: war7day.season },
+          { season: war7day.season, clanTag: member },
           {
             state: war7day.state,
             season: war7day.season,
+            clanTag: member,
             rounds,
           },
           { upsert: true }
