@@ -15,6 +15,18 @@ function DelayNode(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+// Chuyển đổi định dạng ngày tháng từ CoC sang Date object
+function parseCoCDate(dateStr) {
+  // format CoC: YYYYMMDDTHHmmss.SSSZ
+  // ví dụ: 20250904T063557.000Z
+  return new Date(
+    dateStr.replace(
+      /(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2}).000Z/,
+      "$1-$2-$3T$4:$5:$6.000Z"
+    )
+  );
+}
+
 // Lưu hoặc cập nhật dữ liệu clan
 export async function saveClanData(clan) {
   const oldData = await ClanSV01.findOne({ tag: clan.tag });
@@ -43,7 +55,12 @@ export async function savePlayerData(player) {
 
 //Lưu dữ liệu war
 export async function saveWarData(war) {
-  // Đảm bảo mỗi war chỉ tồn tại duy nhất dựa trên clan.tag, opponent.tag, endTime
+  // Parse các trường datetime trước khi lưu
+  if (war.preparationStartTime)
+    war.preparationStartTime = parseCoCDate(war.preparationStartTime);
+  if (war.startTime) war.startTime = parseCoCDate(war.startTime);
+  if (war.endTime) war.endTime = parseCoCDate(war.endTime);
+
   const query = {
     "clan.tag": war.clan?.tag,
     "opponent.tag": war.opponent?.tag,
@@ -77,23 +94,45 @@ export async function saveAllianceData() {
   for (const clanmember of alliances.members) {
     const member = clanmember.tag;
     const clan = await getClanByTag(member);
-    await saveClanData(clan); // thêm await
+    // Nếu clan có trường datetime thì parse trước khi lưu
+    if (clan.createdDate) clan.createdDate = parseCoCDate(clan.createdDate);
+    await saveClanData(clan);
     await DelayNode(120);
 
     const memberList = clan.memberList;
     for (const player of memberList) {
+      // Nếu player có trường datetime thì parse trước khi lưu
+      if (player.joinedDate)
+        player.joinedDate = parseCoCDate(player.joinedDate);
       const playerData = await getPlayerByTag(player.tag);
-      await savePlayerData(playerData); // thêm await
+      if (playerData.joinedDate)
+        playerData.joinedDate = parseCoCDate(playerData.joinedDate);
+      await savePlayerData(playerData);
       await DelayNode(120);
     }
 
     const war7day = await getCurrentWarLeagueGroup(member);
     if (war7day && war7day.state === "inWar") {
+      // Nếu war7day có trường datetime thì parse
+      if (war7day.startTime)
+        war7day.startTime = parseCoCDate(war7day.startTime);
+      if (war7day.endTime) war7day.endTime = parseCoCDate(war7day.endTime);
       for (const round of war7day.rounds) {
         for (const war of round.warTags) {
           if (war === "#0") continue;
 
           const newDataWarDetails = await getWarLeagueWarDetails(war);
+          // Parse các trường datetime của warDetail
+          if (newDataWarDetails.preparationStartTime)
+            newDataWarDetails.preparationStartTime = parseCoCDate(
+              newDataWarDetails.preparationStartTime
+            );
+          if (newDataWarDetails.startTime)
+            newDataWarDetails.startTime = parseCoCDate(
+              newDataWarDetails.startTime
+            );
+          if (newDataWarDetails.endTime)
+            newDataWarDetails.endTime = parseCoCDate(newDataWarDetails.endTime);
           console.log(newDataWarDetails);
           await DelayNode(120);
 
@@ -102,25 +141,34 @@ export async function saveAllianceData() {
             newDataWarDetails.opponent.tag === member
           ) {
             if (newDataWarDetails.clan.tag === member) {
-              await saveWarData(newDataWarDetails); // thêm await
+              await saveWarData(newDataWarDetails);
             } else {
               [newDataWarDetails.clan, newDataWarDetails.opponent] = [
                 newDataWarDetails.opponent,
                 newDataWarDetails.clan,
               ];
-              await saveWarData(newDataWarDetails); // thêm await
+              await saveWarData(newDataWarDetails);
             }
           }
         }
       }
     } else {
       const currentWar = await getCurrentWar(member);
+      // Parse các trường datetime của currentWar
+      if (currentWar.preparationStartTime)
+        currentWar.preparationStartTime = parseCoCDate(
+          currentWar.preparationStartTime
+        );
+      if (currentWar.startTime)
+        currentWar.startTime = parseCoCDate(currentWar.startTime);
+      if (currentWar.endTime)
+        currentWar.endTime = parseCoCDate(currentWar.endTime);
       if (currentWar.state === "notInWar") {
         await DelayNode(120);
         console.log("Clan hiện không trong war");
-        continue; // dùng continue thay vì return -> xử lý tiếp clan khác
+        continue;
       } else {
-        await saveWarData(currentWar); // thêm await
+        await saveWarData(currentWar);
       }
     }
   }
