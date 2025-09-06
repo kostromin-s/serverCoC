@@ -9,7 +9,6 @@ import {
   getCurrentWar,
   getPlayerByTag,
 } from "./cocController.js";
-import { saveWarDetailData } from "./warController.js";
 import { DelayNode } from "./cocController.js";
 import { get } from "mongoose";
 import e from "express";
@@ -100,13 +99,13 @@ export async function saveAllianceData() {
             newDataWarDetails.opponent.tag === member
           ) {
             if (newDataWarDetails.clan.tag === member) {
-              await saveWarDetailData(newDataWarDetails); // thêm await
+              await saveWarData(newDataWarDetails); // thêm await
             } else {
               [newDataWarDetails.clan, newDataWarDetails.opponent] = [
                 newDataWarDetails.opponent,
                 newDataWarDetails.clan,
               ];
-              await saveWarDetailData(newDataWarDetails); // thêm await
+              await saveWarData(newDataWarDetails); // thêm await
             }
           }
         }
@@ -118,7 +117,7 @@ export async function saveAllianceData() {
         console.log("Clan hiện không trong war");
         continue; // dùng continue thay vì return -> xử lý tiếp clan khác
       } else {
-        await saveWarDetailData(currentWar); // thêm await
+        await saveWarData(currentWar); // thêm await
       }
     }
   }
