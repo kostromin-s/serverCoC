@@ -338,6 +338,16 @@ async function updateWarPoints() {
   }
 }
 
+//Hàm tự động ping server giữ cho server không bị ngủ
+async function autoPing() {
+  try {
+    await axios.get(process.env.URL_server);
+    console.log("✅ Đã ping server thành công");
+  } catch (error) {
+    console.error("❌ Lỗi khi ping server:", error);
+  }
+}
+
 // Schedule job chạy 23:59 hằng ngày
 schedule.scheduleJob("59 23 * * *", calculateDailyPoints);
 console.log("Đã lên lịch tính điểm hằng ngày vào 23:59");
@@ -345,3 +355,7 @@ console.log("Đã lên lịch tính điểm hằng ngày vào 23:59");
 // Schedule job chạy 3 phút 1 lần để cập nhật war points
 schedule.scheduleJob("*/3 * * * *", updateWarPoints);
 console.log("Đã lên lịch cập nhật war points mỗi 3 phút");
+
+// Schedule job chạy 5 phút 1 lần để ping server
+schedule.scheduleJob("*/5 * * * *", autoPing);
+console.log("Đã lên lịch ping server mỗi 5 phút");
