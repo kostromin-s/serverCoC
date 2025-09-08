@@ -348,9 +348,9 @@ async function autoPing() {
   }
 }
 
-// Schedule job chạy 23:59 hằng ngày
-schedule.scheduleJob("59 23 * * *", calculateDailyPoints);
-console.log("Đã lên lịch tính điểm hằng ngày vào 23:59");
+// Schedule job chạy 00:01 hằng ngày
+schedule.scheduleJob("1 0 * * *", calculateDailyPoints);
+console.log("Đã lên lịch tính điểm hằng ngày vào 00:01");
 
 // Schedule job chạy 3 phút 1 lần để cập nhật war points
 schedule.scheduleJob("*/3 * * * *", updateWarPoints);
