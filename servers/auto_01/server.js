@@ -7,6 +7,11 @@ import connectDB from "./config/connectDB.js";
 
 const app = express();
 
+app.use(express.json());
+
+//port
+const PORT = process.env.PORT || 3000;
+
 app.get("/", (req, res) => {
   res.send("Server auto_01 is running!");
 });
@@ -20,3 +25,8 @@ app.get("/", (req, res) => {
     console.log("🚀 Server auto_01 started.");
   });
 })();
+
+//listen on port
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
