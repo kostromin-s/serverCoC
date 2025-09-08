@@ -197,6 +197,7 @@ async function calculateDailyPoints() {
           clanGamePoints: { value: 0, hidden: false },
         };
 
+        console.log(`Điểm hôm qua của player ${player.name}:`, prevPoint);
         // === TODO: bạn viết logic tính toán ở đây ===
         const ClanStatsData = await ClanStats.findOne({
           clanTag: clan.clantag,
@@ -207,6 +208,10 @@ async function calculateDailyPoints() {
 
         const warPointValue = Math.min(Math.max(playerStats, 0), 100); // Giới hạn điểm từ 0 đến 100
         let activePointValue = prevPoint.activepoints.value;
+        console.log(
+          `Player ${player.name} (${player.tag}) previous activePointValue: ${activePointValue} attackWins: ${player.attackWins} prevAttackWins: ${prevPoint.attackWins}`
+        );
+        // Tăng giảm điểm activepoints dựa trên số trận thắng hôm qua
         if (prevPoint.attackWins < player.attackWins) {
           activePointValue += Math.min(
             player.attackWins - prevPoint.attackWins,
@@ -216,6 +221,9 @@ async function calculateDailyPoints() {
           activePointValue -= 2; // không tăng trừ 2 điểm
         }
         activePointValue = Math.min(Math.max(activePointValue, 0), 100); // Giới hạn từ 0 đến 100
+        console.log(
+          `Player ${player.name} (${player.tag})activePointValue: ${activePointValue}`
+        );
         const clanGamePointValue = prevPoint.clanGamePoints.value;
         const raw =
           0.35 * Math.log(1 + activePointValue) +
@@ -237,17 +245,23 @@ async function calculateDailyPoints() {
           activepoints: { value: activePointValue, hidden: false },
           clanGamePoints: { value: clanGamePointValue, hidden: false },
         };
+        console.log(
+          `Player ${player.name} (${player.tag}) - newPoints:`,
+          newPoints
+        );
 
         await DaylyPoint.updateOne(
           { tag: player.tag, clantag: clan.clantag, date: today },
           {
+            $set: {
+              attackWins: player.attackWins,
+              ...newPoints,
+            },
             $setOnInsert: {
               tag: player.tag,
               clantag: clan.clantag,
               name: player.name,
               date: today,
-              attackWins: player.attackWins,
-              ...newPoints,
             },
           },
           { upsert: true }
