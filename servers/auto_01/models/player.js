@@ -149,7 +149,7 @@ const PlayerSV01Schema = new mongoose.Schema({
   player: [PlayerSchema],
 });
 
-PlayerSV01Schema.index({ clantag: 1 });
+PlayerSV01Schema.index({ clantag: 1 }, { unique: true });
 
 const PlayerSV01 = mongoose.model("PlayerSV01", PlayerSV01Schema);
 export default PlayerSV01;

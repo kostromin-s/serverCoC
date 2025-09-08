@@ -53,19 +53,6 @@ export async function saveClanData(clan) {
   }
 }
 
-// Lưu hoặc cập nhật dữ liệu player
-export async function savePlayerData(player) {
-  // const oldData = await PlayerSV01.findOne({ tag: player.tag });
-  // if (!oldData) {
-  //   const newPlayer = new PlayerSV01(player);
-  //   await newPlayer.save();
-  //   console.log(`Player ${player.name} saved.`);
-  // } else {
-  //   await PlayerSV01.updateOne({ tag: player.tag }, player);
-  //   console.log(`Player ${player.name} updated.`);
-  // }
-}
-
 //Lưu dữ liệu war
 export async function saveWarData(war) {
   war = normalizeWarDates(war);
