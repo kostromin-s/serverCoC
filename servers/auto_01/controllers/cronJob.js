@@ -29,6 +29,83 @@ export function getVNDate(offsetDays = 0) {
   return now.toISOString().slice(0, 10);
 }
 
+/**
+ * Hàm tính điểm cho player dựa trên dữ liệu hiện tại và điểm ngày trước
+ * @param {Object} player - Thông tin player hiện tại
+ * @param {Object} prevPoint - Điểm ngày trước của player
+ * @param {string} clanTag - Tag của clan
+ * @returns {Object} Trả về các điểm đã tính toán
+ */
+async function calculatePlayerPoints(player, prevPoint, clanTag) {
+  try {
+    // Lấy ClanStats để tính warPoints
+    const ClanStatsData = await ClanStats.findOne({ clanTag });
+    const playerStats =
+      ClanStatsData?.players.find((p) => p.playerTag === player.tag)
+        ?.totalScore || 0;
+
+    // 1. Tính warPoints
+    const warPointValue = Math.min(Math.max(playerStats, 0), 100);
+
+    // 2. Tính activepoints
+    let activePointValue = prevPoint.activepoints?.value || 0;
+    const prevAttackWins = prevPoint.attackWins || 0;
+
+    if (prevAttackWins < player.attackWins) {
+      // Có thắng thêm trận → cộng điểm (tối đa 3 điểm)
+      activePointValue += Math.min(player.attackWins - prevAttackWins, 3);
+    } else {
+      // Không thắng thêm trận → trừ 2 điểm
+      activePointValue -= 2;
+    }
+    activePointValue = Math.min(Math.max(activePointValue, 0), 100); // Giới hạn 0-100
+
+    // 3. Giữ nguyên clanGamePoints
+    const clanGamePointValue = prevPoint.clanGamePoints?.value || 0;
+
+    // 4. Tính InfluencePoints dựa trên công thức
+    const raw =
+      0.35 * Math.log(1 + activePointValue) +
+      0.25 * Math.log(1 + warPointValue) +
+      0.1 * Math.log(1 + player.donations) +
+      0.05 * Math.log(1 + player.donationsReceived) +
+      0.25 * Math.log(1 + clanGamePointValue);
+
+    const influence = Math.min(Math.max(Math.round((raw / 6) * 100), 0), 100);
+    const influencePointValue = influence;
+
+    // 5. Trả về kết quả với giữ nguyên trạng thái hidden từ ngày trước
+    return {
+      warPoints: {
+        value: warPointValue,
+        hidden: prevPoint.warPoints?.hidden || false,
+      },
+      InfluencePoints: {
+        value: influencePointValue,
+        hidden: prevPoint.InfluencePoints?.hidden || false,
+      },
+      activepoints: {
+        value: activePointValue,
+        hidden: prevPoint.activepoints?.hidden || false,
+      },
+      clanGamePoints: {
+        value: clanGamePointValue,
+        hidden: prevPoint.clanGamePoints?.hidden || false,
+      },
+    };
+  } catch (error) {
+    console.error(`❌ Lỗi khi tính điểm cho player ${player.name}:`, error);
+
+    // Trả về điểm mặc định nếu có lỗi
+    return {
+      warPoints: { value: 0, hidden: false },
+      InfluencePoints: { value: 0, hidden: false },
+      activepoints: { value: 0, hidden: false },
+      clanGamePoints: { value: 0, hidden: false },
+    };
+  }
+}
+
 // Lên lịch chạy công việc vào mỗi 2 phút (tính warScore)
 cron.schedule("*/2 * * * *", async () => {
   try {
@@ -129,95 +206,75 @@ cron.schedule("*/2 * * * *", async () => {
   }
 });
 
-// Tính điểm hằng ngày cho tất cả players
+// Tính điểm hàng ngày cho tất cả players
 async function calculateDailyPoints() {
   try {
     const today = getVNDate(0);
     const yesterday = getVNDate(-1);
+
+    console.log(
+      `🔄 Bắt đầu tính điểm cho ngày ${today}, dựa vào dữ liệu ${yesterday}`
+    );
+
     const yesterdayPoints = await DaylyPoint.find({ date: yesterday }).lean();
     const clans = await PlayerSV01.find().lean();
 
+    let processedCount = 0;
+    let errorCount = 0;
+
     for (const clan of clans) {
       for (const player of clan.player) {
-        const prevPoint = yesterdayPoints.find(
-          (p) => p.tag === player.tag && p.clantag === clan.clantag
-        ) || {
-          warPoints: { value: 0, hidden: false },
-          InfluencePoints: { value: 0, hidden: false },
-          activepoints: { value: 0, hidden: false },
-          clanGamePoints: { value: 0, hidden: false },
-        };
+        try {
+          // Tìm điểm hôm qua
+          const prevPoint = yesterdayPoints.find(
+            (p) => p.tag === player.tag && p.clantag === clan.clantag
+          ) || {
+            warPoints: { value: 0, hidden: false },
+            InfluencePoints: { value: 0, hidden: false },
+            activepoints: { value: 0, hidden: false },
+            clanGamePoints: { value: 0, hidden: false },
+            attackWins: 0,
+          };
 
-        const ClanStatsData = await ClanStats.findOne({
-          clanTag: clan.clantag,
-        });
-        const playerStats =
-          ClanStatsData?.players.find((p) => p.playerTag === player.tag)
-            ?.totalScore || 0;
-
-        const warPointValue = Math.min(Math.max(playerStats, 0), 100);
-        let activePointValue = prevPoint.activepoints.value;
-        if (prevPoint.attackWins < player.attackWins) {
-          activePointValue += Math.min(
-            player.attackWins - prevPoint.attackWins,
-            3
+          // Sử dụng hàm tính điểm chung
+          const newPoints = await calculatePlayerPoints(
+            player,
+            prevPoint,
+            clan.clantag
           );
-        } else {
-          activePointValue -= 2;
+
+          // Cập nhật hoặc tạo mới record
+          await DaylyPoint.updateOne(
+            { tag: player.tag, clantag: clan.clantag, date: today },
+            {
+              $set: {
+                attackWins: player.attackWins,
+                ...newPoints,
+              },
+              $setOnInsert: {
+                tag: player.tag,
+                clantag: clan.clantag,
+                name: player.name,
+                date: today,
+              },
+            },
+            { upsert: true }
+          );
+
+          processedCount++;
+        } catch (error) {
+          console.error(
+            `❌ Lỗi khi xử lý player ${player.name} (${player.tag}):`,
+            error
+          );
+          errorCount++;
         }
-        activePointValue = Math.min(Math.max(activePointValue, 0), 100);
-        const clanGamePointValue = prevPoint.clanGamePoints.value;
-        const raw =
-          0.35 * Math.log(1 + activePointValue) +
-          0.25 * Math.log(1 + warPointValue) +
-          0.1 * Math.log(1 + player.donations) +
-          0.05 * Math.log(1 + player.donationsReceived) +
-          0.25 * Math.log(1 + clanGamePointValue);
-
-        const influence = Math.min(
-          Math.max(Math.round((raw / 6) * 100), 0),
-          100
-        );
-        const influencePointValue = influence;
-
-        const newPoints = {
-          warPoints: {
-            value: warPointValue,
-            hidden: prevPoint.warPoints.hidden,
-          },
-          InfluencePoints: {
-            value: influencePointValue,
-            hidden: prevPoint.InfluencePoints.hidden,
-          },
-          activepoints: {
-            value: activePointValue,
-            hidden: prevPoint.activepoints.hidden,
-          },
-          clanGamePoints: {
-            value: clanGamePointValue,
-            hidden: prevPoint.clanGamePoints.hidden,
-          },
-        };
-
-        await DaylyPoint.updateOne(
-          { tag: player.tag, clantag: clan.clantag, date: today },
-          {
-            $set: {
-              attackWins: player.attackWins,
-              ...newPoints,
-            },
-            $setOnInsert: {
-              tag: player.tag,
-              clantag: clan.clantag,
-              name: player.name,
-              date: today,
-            },
-          },
-          { upsert: true }
-        );
       }
     }
-    console.log("✅ Hoàn tất tính điểm hằng ngày.");
+
+    console.log(
+      `✅ Hoàn tất tính điểm hàng ngày. Đã xử lý: ${processedCount}, Lỗi: ${errorCount}`
+    );
   } catch (err) {
     console.error("❌ Lỗi khi tính điểm:", err);
   }
@@ -282,7 +339,75 @@ async function updateWarPoints() {
   }
 }
 
-//Hàm tự động ping server giữ cho server không bị ngủ
+// Hàm phát hiện người chơi mới trong clan và tạo daylyPoint hôm nay cho họ
+async function detectNewPlayers() {
+  try {
+    const today = getVNDate(0);
+    const clans = await ClanSV01.find().lean();
+
+    let newPlayersCount = 0;
+
+    for (const clan of clans) {
+      for (const player of clan.memberList) {
+        // Kiểm tra xem player đã có record hôm nay chưa
+        const existsToday = await DaylyPoint.exists({
+          tag: player.tag,
+          clantag: clan.tag,
+          date: today,
+        });
+
+        if (existsToday) continue;
+
+        // Tìm record gần nhất của player này trong clan này
+        const lastRecord = await DaylyPoint.findOne({
+          tag: player.tag,
+          clantag: clan.tag,
+        })
+          .sort({ date: -1 })
+          .lean();
+
+        // Tạo prevPoint từ record cuối hoặc dùng mặc định
+        const prevPoint = lastRecord || {
+          warPoints: { value: 0, hidden: false },
+          InfluencePoints: { value: 0, hidden: false },
+          activepoints: { value: 0, hidden: false },
+          clanGamePoints: { value: 0, hidden: false },
+          attackWins: 0,
+        };
+
+        // Sử dụng hàm tính điểm chung
+        const newPoints = await calculatePlayerPoints(
+          player,
+          prevPoint,
+          clan.tag
+        );
+
+        // Tạo record mới cho player
+        await DaylyPoint.create({
+          tag: player.tag,
+          clantag: clan.tag,
+          name: player.name,
+          date: today,
+          attackWins: player.attackWins,
+          ...newPoints,
+        });
+
+        newPlayersCount++;
+        console.log(
+          `➕ Tạo record mới cho player ${player.name} trong clan ${clan.tag}`
+        );
+      }
+    }
+
+    console.log(
+      `✅ Hoàn tất phát hiện người chơi mới. Đã tạo ${newPlayersCount} records mới.`
+    );
+  } catch (err) {
+    console.error("❌ Lỗi khi phát hiện người chơi mới:", err);
+  }
+}
+
+// Hàm tự động ping server giữ cho server không bị ngủ
 async function autoPing() {
   try {
     await axios.get(process.env.URL_server);
@@ -291,9 +416,9 @@ async function autoPing() {
   }
 }
 
-// Schedule job chạy 00:01 hằng ngày
+// Schedule job chạy 00:01 hàng ngày
 schedule.scheduleJob("1 0 * * *", calculateDailyPoints);
-console.log("Đã lên lịch tính điểm hằng ngày vào 00:01");
+console.log("Đã lên lịch tính điểm hàng ngày vào 00:01");
 
 // Schedule job chạy 3 phút 1 lần để cập nhật war points
 schedule.scheduleJob("*/3 * * * *", updateWarPoints);
@@ -302,3 +427,10 @@ console.log("Đã lên lịch cập nhật war points mỗi 3 phút");
 // Schedule job chạy 5 phút 1 lần để ping server
 schedule.scheduleJob("*/5 * * * *", autoPing);
 console.log("Đã lên lịch ping server mỗi 5 phút");
+
+// Schedule job chạy 30 giây 1 lần để phát hiện người chơi mới
+schedule.scheduleJob("*/30 * * * * *", detectNewPlayers);
+console.log("Đã lên lịch phát hiện người chơi mới mỗi 30 giây");
+
+// Export hàm tính điểm để có thể sử dụng ở nơi khác
+export { calculatePlayerPoints };
