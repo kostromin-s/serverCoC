@@ -20,6 +20,7 @@ app.get("/", (req, res) => {
   await connectDB();
   // Import cron job sau khi DB đã kết nối
   await import("./controllers/cronJob.js");
+  await import("./controllers/dataDisplay.js");
 
   app.listen(process.env.PORT || 3000, () => {
     console.log("🚀 Server auto_01 started.");

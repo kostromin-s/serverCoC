@@ -12,51 +12,34 @@ import ClanStats from "../models/ClanStats.js";
 //Kết luận kết quả war
 function concludeWarResult(war) {
   if (!war || war.state !== "warEnded") return null;
-
   const { clan, opponent } = war;
-
   if (clan.stars > opponent.stars) return "win";
   if (clan.stars < opponent.stars) return "lost";
-
-  // nếu số sao bằng nhau thì xét % phá hủy
   if (clan.destructionPercentage > opponent.destructionPercentage) return "win";
   if (clan.destructionPercentage < opponent.destructionPercentage)
     return "lost";
-
   return "draw";
 }
 
 // Lấy ngày Việt Nam (UTC+7) với offset ngày
-export function getVNDate() {
+export function getVNDate(offsetDays = 0) {
   const now = new Date();
-  // Giờ VN = UTC + 7
   now.setHours(now.getHours() + 7);
-  return now.toISOString().slice(0, 10); // yyyy-mm-dd
+  now.setDate(now.getDate() + offsetDays);
+  return now.toISOString().slice(0, 10);
 }
 
 // Lên lịch chạy công việc vào mỗi 2 phút (tính warScore)
 cron.schedule("*/2 * * * *", async () => {
   try {
-    // 1. Lấy 10 war gần nhất, sort theo endTime mới nhất
     const wars = await WarDetail.find({}).sort({ endTime: -1 }).limit(100);
-
     for (const war of wars) {
-      // 2. Kiểm tra war đã có score chưa
       const exists = await WarScore.exists({ war: war._id });
-      if (exists || war.state !== "warEnded") {
-        console.log(
-          `✅ War ${war._id} đã có score hoặc chưa kết thúc trận chiến`
-        );
-        continue;
-      }
+      if (exists || war.state !== "warEnded") continue;
 
       const membersOfwarScore = [];
       const ourTeam = war.clan.members || [];
       const theirTeam = war.opponent.members || [];
-      // Lấy danh sách căn cứ đối thủ chưa bị phá hủy 100%
-      // Build a lookup: attackerTag -> [theirMember, ...]
-      // Lý do: một attacker (ourMember) có thể là bestOpponentAttack của *nhiều* thành viên đối phương,
-      // nên ta lưu mảng (không chỉ 1 phần tử) để đếm chính xác số lần "keyWarrior".
       const theirAttackMap = new Map();
       for (const member of theirTeam) {
         const attackerTag = member.bestOpponentAttack?.attackerTag;
@@ -65,19 +48,15 @@ cron.schedule("*/2 * * * *", async () => {
         list.push(member);
         theirAttackMap.set(attackerTag, list);
       }
-
       const unDestroyedBases = theirTeam.filter(
         (m) => (m.bestOpponentAttack?.stars ?? 0) < 3
       );
-
-      // Tìm order lớn nhất toàn clan để check lastHit
       const allAttacks = ourTeam.flatMap((m) => m.attacks || []);
       const maxOrder =
         allAttacks.length > 0 ? Math.max(...allAttacks.map((a) => a.order)) : 0;
 
       const members = ourTeam.map((ourMember) => {
         const attacksArr = ourMember.attacks || [];
-
         const objmember = {
           tag: ourMember.tag,
           name: ourMember.name,
@@ -85,11 +64,8 @@ cron.schedule("*/2 * * * *", async () => {
           title: { keyWarrior: 0, giantSlayer: 0, drop: 0, lastHit: false },
           attacks: attacksArr.length,
         };
-
-        // ---------- KEY WARRIOR / GIANT SLAYER ----------
         const attackedMembers = theirAttackMap.get(ourMember.tag) || [];
         objmember.title.keyWarrior = attackedMembers.length;
-
         for (const attackedMember of attackedMembers) {
           const stars = attackedMember.bestOpponentAttack?.stars ?? 0;
           if (
@@ -99,8 +75,6 @@ cron.schedule("*/2 * * * *", async () => {
             objmember.title.giantSlayer += 1;
           }
         }
-
-        // ---------- DROP ----------
         const remain = war.attacksPerMember - attacksArr.length;
         if (remain > 0) {
           let dropCount = 0;
@@ -115,8 +89,6 @@ cron.schedule("*/2 * * * *", async () => {
           }
           objmember.title.drop = dropCount;
         }
-
-        // ---------- SCORE ----------
         if (objmember.title.drop > 0) {
           objmember.score =
             -(2 + ourMember.townhallLevel * 0.1) * objmember.title.drop;
@@ -124,17 +96,10 @@ cron.schedule("*/2 * * * *", async () => {
           objmember.title.giantSlayer = 0;
           objmember.title.lastHit = false;
         } else {
-          // Base score từ keyWarrior
           objmember.score +=
             objmember.title.keyWarrior * (1 + ourMember.townhallLevel * 0.01);
-
-          // GiantSlayer
           objmember.score += objmember.title.giantSlayer * 2;
-
-          // Attacks đã dùng
           objmember.score += attacksArr.length;
-
-          // LastHit check
           if (
             objmember.title.keyWarrior > 0 &&
             war.clan.destructionPercentage === 100
@@ -146,14 +111,9 @@ cron.schedule("*/2 * * * *", async () => {
             }
           }
         }
-        console.log(
-          `Thành viên ${objmember.name} có score: ${objmember.score}`
-        );
-
         membersOfwarScore.push(objmember);
       });
 
-      // 3. Nếu chưa có thì tạo mới
       const newScore = new WarScore({
         war: war._id,
         result: concludeWarResult(war),
@@ -162,10 +122,10 @@ cron.schedule("*/2 * * * *", async () => {
       });
 
       await newScore.save();
-      console.log(`➕ Tạo mới WarScore cho war ${war._id}`);
     }
+    console.log("✅ Hoàn tất tính warScore cho các trận war mới.");
   } catch (err) {
-    console.error("Lỗi khi sync WarScores:", err);
+    console.error("❌ Lỗi khi sync WarScores:", err);
   }
 });
 
@@ -174,20 +134,11 @@ async function calculateDailyPoints() {
   try {
     const today = getVNDate(0);
     const yesterday = getVNDate(-1);
-
-    console.log(
-      `Đang tính điểm cho ngày ${today}, dựa vào dữ liệu ${yesterday}`
-    );
-
-    // Lấy dữ liệu điểm hôm qua
     const yesterdayPoints = await DaylyPoint.find({ date: yesterday }).lean();
-
-    // Lấy tất cả players từ PlayerSV01
     const clans = await PlayerSV01.find().lean();
 
     for (const clan of clans) {
       for (const player of clan.player) {
-        // Nếu không có điểm hôm qua → dùng giá trị mặc định
         const prevPoint = yesterdayPoints.find(
           (p) => p.tag === player.tag && p.clantag === clan.clantag
         ) || {
@@ -197,8 +148,6 @@ async function calculateDailyPoints() {
           clanGamePoints: { value: 0, hidden: false },
         };
 
-        console.log(`Điểm hôm qua của player ${player.name}:`, prevPoint);
-        // === TODO: bạn viết logic tính toán ở đây ===
         const ClanStatsData = await ClanStats.findOne({
           clanTag: clan.clantag,
         });
@@ -206,24 +155,17 @@ async function calculateDailyPoints() {
           ClanStatsData?.players.find((p) => p.playerTag === player.tag)
             ?.totalScore || 0;
 
-        const warPointValue = Math.min(Math.max(playerStats, 0), 100); // Giới hạn điểm từ 0 đến 100
+        const warPointValue = Math.min(Math.max(playerStats, 0), 100);
         let activePointValue = prevPoint.activepoints.value;
-        console.log(
-          `Player ${player.name} (${player.tag}) previous activePointValue: ${activePointValue} attackWins: ${player.attackWins} prevAttackWins: ${prevPoint.attackWins}`
-        );
-        // Tăng giảm điểm activepoints dựa trên số trận thắng hôm qua
         if (prevPoint.attackWins < player.attackWins) {
           activePointValue += Math.min(
             player.attackWins - prevPoint.attackWins,
             3
           );
         } else {
-          activePointValue -= 2; // không tăng trừ 2 điểm
+          activePointValue -= 2;
         }
-        activePointValue = Math.min(Math.max(activePointValue, 0), 100); // Giới hạn từ 0 đến 100
-        console.log(
-          `Player ${player.name} (${player.tag})activePointValue: ${activePointValue}`
-        );
+        activePointValue = Math.min(Math.max(activePointValue, 0), 100);
         const clanGamePointValue = prevPoint.clanGamePoints.value;
         const raw =
           0.35 * Math.log(1 + activePointValue) +
@@ -238,17 +180,24 @@ async function calculateDailyPoints() {
         );
         const influencePointValue = influence;
 
-        // Sau đó gán vào newPoints:
         const newPoints = {
-          warPoints: { value: warPointValue, hidden: false },
-          InfluencePoints: { value: influencePointValue, hidden: false },
-          activepoints: { value: activePointValue, hidden: false },
-          clanGamePoints: { value: clanGamePointValue, hidden: false },
+          warPoints: {
+            value: warPointValue,
+            hidden: prevPoint.warPoints.hidden,
+          },
+          InfluencePoints: {
+            value: influencePointValue,
+            hidden: prevPoint.InfluencePoints.hidden,
+          },
+          activepoints: {
+            value: activePointValue,
+            hidden: prevPoint.activepoints.hidden,
+          },
+          clanGamePoints: {
+            value: clanGamePointValue,
+            hidden: prevPoint.clanGamePoints.hidden,
+          },
         };
-        console.log(
-          `Player ${player.name} (${player.tag}) - newPoints:`,
-          newPoints
-        );
 
         await DaylyPoint.updateOne(
           { tag: player.tag, clantag: clan.clantag, date: today },
@@ -268,8 +217,7 @@ async function calculateDailyPoints() {
         );
       }
     }
-
-    console.log("✅ Hoàn tất tính điểm hằng ngày");
+    console.log("✅ Hoàn tất tính điểm hằng ngày.");
   } catch (err) {
     console.error("❌ Lỗi khi tính điểm:", err);
   }
@@ -282,17 +230,14 @@ async function updateWarPoints() {
     for (const alliance of alliances) {
       for (const member of alliance.members) {
         const clanTag = member.tag;
-        // Lấy 20 war gần nhất mà clan tham gia
         const wars = await WarDetail.find({ "clan.tag": clanTag })
           .sort({ endTime: -1 })
           .limit(20)
           .lean();
 
-        // Tổng hợp điểm cho từng player trong clan
         const playerStatsMap = new Map();
 
         for (const war of wars) {
-          // Tìm warScore tương ứng
           const warScore = await WarScore.findOne({ war: war._id }).lean();
           if (!warScore || !warScore.members) continue;
 
@@ -323,16 +268,15 @@ async function updateWarPoints() {
           }
         }
 
-        // Lưu hoặc cập nhật ClanStats
         const players = Array.from(playerStatsMap.values());
         await ClanStats.updateOne(
           { clanTag },
           { clanTag, players, updatedAt: new Date() },
           { upsert: true }
         );
-        console.log(`✅ Đã cập nhật ClanStats cho clan ${clanTag}`);
       }
     }
+    console.log("✅ Hoàn tất cập nhật war points cho các clan.");
   } catch (err) {
     console.error("❌ Lỗi khi cập nhật war points:", err);
   }
@@ -342,9 +286,8 @@ async function updateWarPoints() {
 async function autoPing() {
   try {
     await axios.get(process.env.URL_server);
-    console.log("✅ Đã ping server thành công");
   } catch (error) {
-    console.error("❌ Lỗi khi ping server:", error);
+    // Không cần log lỗi ping
   }
 }
 
