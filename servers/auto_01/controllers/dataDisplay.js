@@ -1,5 +1,5 @@
 import cron from "node-cron";
-import schedule from "node-cron";
+import schedule from "node-schedule";
 import listArmy from "../models/ArmyModel.js";
 import Army from "../models/listTroop.js";
 import PlayerSV01 from "../models/player.js";
@@ -103,5 +103,5 @@ async function updateAllClans() {
   console.log("Updated all clans' armies.");
 }
 
-// Chạy ngay khi khởi động server
-updateAllClans();
+// Chạy 1 phút 1 lần
+schedule.scheduleJob("*/1 * * * *", updateAllClans);
