@@ -416,21 +416,28 @@ async function autoPing() {
   }
 }
 
+function scheduleJob(cronExpression, jobFunction) {
+  cron.schedule(cronExpression, jobFunction, {
+    scheduled: true,
+    timezone: "Asia/Ho_Chi_Minh",
+  });
+}
+
 // Schedule job chạy 00:01 hàng ngày
-schedule.scheduleJob("1 0 * * *", calculateDailyPoints);
+scheduleJob("1 0 * * *", calculateDailyPoints);
 console.log("Đã lên lịch tính điểm hàng ngày vào 00:01");
 
 // Schedule job chạy 3 phút 1 lần để cập nhật war points
-schedule.scheduleJob("*/3 * * * *", updateWarPoints);
+scheduleJob("*/3 * * * *", updateWarPoints);
 console.log("Đã lên lịch cập nhật war points mỗi 3 phút");
 
 // Schedule job chạy 5 phút 1 lần để ping server
-schedule.scheduleJob("*/5 * * * *", autoPing);
+scheduleJob("*/5 * * * *", autoPing);
 console.log("Đã lên lịch ping server mỗi 5 phút");
 
 // Schedule job chạy 30 giây 1 lần để phát hiện người chơi mới
-schedule.scheduleJob("*/30 * * * * *", detectNewPlayers);
+scheduleJob("*/30 * * * * *", detectNewPlayers);
 console.log("Đã lên lịch phát hiện người chơi mới mỗi 30 giây");
 
 // Export hàm tính điểm để có thể sử dụng ở nơi khác
-export { calculatePlayerPoints };
+export { calculatePlayerPoints, scheduleJob };

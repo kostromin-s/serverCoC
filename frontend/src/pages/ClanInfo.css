@@ -1,0 +1,589 @@
+/* ========== Banner ========== */
+.claninfo-banner {
+  position: relative;
+  width: 100%;
+  max-width: 940px;
+  aspect-ratio: 16 / 7;
+  margin: 0 auto 5px auto;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13);
+  background: #222;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+.claninfo-banner-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: 1;
+  filter: brightness(0.85);
+}
+.claninfo-banner-info {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  height: 40%;
+  width: 95%;
+  display: flex;
+  align-items: flex-end;
+  box-sizing: border-box;
+  gap: 14px;
+  z-index: 2;
+  padding: 16px 24px 12px 16px;
+  border-radius: 18px;
+  background: linear-gradient(
+    0deg,
+    rgb(0 0 0 / 33%) 70%,
+    rgb(21 21 21 / 0%) 100%
+  );
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13);
+}
+.claninfo-banner-logo-nobg {
+  max-height: 90%;
+  aspect-ratio: 1 / 1;
+  background: none;
+  box-shadow: none;
+}
+.claninfo-banner-name {
+  font-size: 3em;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.28), 0 0 2px #646cff;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  word-break: break-word;
+  align-items: center;
+}
+
+/* ========== Leader Bar ========== */
+.claninfo-leaderbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto 5px auto;
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: var(--clan-leaderbar-bg, #f9f9fc);
+  box-shadow: 0 2px 12px rgba(100, 108, 255, 0.07);
+  gap: 18px;
+  flex-wrap: nowrap;
+}
+.claninfo-join-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(245, 246, 250, 0.7);
+  border-radius: 12px;
+  padding: 14px 18px;
+  min-width: 180px;
+  box-shadow: 0 2px 12px rgba(100, 108, 255, 0.07);
+}
+.claninfo-leaderbar-description {
+  flex: 1;
+  font-size: 1em;
+  color: #444;
+  margin-left: 0;
+  min-width: 120px;
+  word-break: break-word;
+  align-self: center;
+}
+.claninfo-join-btn {
+  padding: 8px 16px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(90deg, #646cff 0%, #ffd700 100%);
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(100, 108, 255, 0.1);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  white-space: normal;
+  text-decoration: none;
+  max-width: 160px;
+  word-break: break-word;
+  text-align: center;
+  line-height: 1.2;
+  box-sizing: border-box;
+  margin: 10px auto 10px 10px;
+}
+
+/* ========== Leader Info ========== */
+.claninfo-leader-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 90px;
+}
+.claninfo-leader-avatar-wrap {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.claninfo-leader-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+  position: relative;
+  z-index: 2;
+  margin: 0 auto;
+  border: none;
+  box-shadow: 0 0 8px #ffd700, 0 0 16px #ffd700, 0 0 24px #ffd700;
+  animation: glow 2s infinite alternate;
+}
+@keyframes glow {
+  from {
+    box-shadow: 0 0 6px rgba(255, 215, 0, 0.6), 0 0 12px rgba(255, 215, 0, 0.6),
+      0 0 18px rgba(255, 215, 0, 0.6);
+  }
+  to {
+    box-shadow: 0 0 12px rgba(255, 215, 0, 1), 0 0 24px rgba(255, 215, 0, 1),
+      0 0 36px rgba(255, 215, 0, 1);
+  }
+}
+.claninfo-leader-namebox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-top: 2px;
+  width: 100%;
+}
+.claninfo-leader-label {
+  margin-bottom: 2px;
+  text-align: center;
+}
+.claninfo-leader-name {
+  text-align: center;
+}
+
+/* ========== Clan Details ========== */
+.claninfo-details {
+  max-width: 900px;
+  margin: 0 auto 24px auto;
+  padding: 18px 18px 10px 18px;
+  border-radius: 14px;
+  background: var(--clan-details-bg, #23272f);
+  box-shadow: 0 2px 12px rgba(100, 108, 255, 0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.clan-labels {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+.clan-labels img {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(100, 108, 255, 0.08);
+}
+.clan-stats {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 1.05em;
+  color: #646cff;
+}
+.clan-stats div {
+  background: #646cff12;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.clan-war {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 1.05em;
+  color: #ff9800;
+}
+.clan-war div {
+  background: #ffd70012;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.clan-lang {
+  font-size: 1.05em;
+  color: #213547;
+  background: #646cff10;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+  width: fit-content;
+}
+
+/* ========== Member Lists ========== */
+.claninfo-lists-row {
+  display: flex;
+  gap: 18px;
+  max-width: 900px;
+  margin: 0 auto 18px auto;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.claninfo-coleader-list,
+.claninfo-topmembers-list {
+  flex: 1 1 0;
+  min-width: 280px;
+  max-width: 50%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: var(--clan-details-bg, #23272f);
+  box-shadow: 0 2px 12px rgba(100, 108, 255, 0.07);
+  display: flex;
+  flex-direction: column;
+}
+.claninfo-coleader-list h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.15em;
+  color: #646cff;
+}
+.claninfo-topmembers-list h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.15em;
+  color: #ff9800;
+}
+.claninfo-coleaders,
+.claninfo-topmembers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.claninfo-coleader,
+.claninfo-topmember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  justify-content: flex-start;
+  background: #646cff18;
+  padding: 8px 14px;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+.claninfo-topmember {
+  background: #ffd70018;
+}
+.claninfo-coleader-avatar,
+.claninfo-topmember-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.claninfo-coleader-name {
+  font-weight: 600;
+  color: #646cff;
+}
+.claninfo-topmember-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.claninfo-topmember-name {
+  font-weight: 600;
+  color: #ff9800;
+}
+.claninfo-topmember-trophy {
+  font-size: 0.95em;
+  color: #646cff;
+}
+.clan-war-bar {
+  margin-top: 0px;
+  padding: 0px !important;
+  width: max-content;
+  width: 100%;
+  height: 5px;
+  display: flex;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: none;
+  border: 1px solid #bdbdbd;
+}
+.clan-war-bar > div {
+  height: 100%;
+  border-radius: 0;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 600px) {
+  .claninfo-banner-info {
+    left: 10px;
+    bottom: 10px;
+    gap: 8px;
+    padding: 10px 12px 8px 10px;
+  }
+  .claninfo-banner-logo {
+    width: 40px;
+    height: 40px;
+    max-height: 40px !important;
+    aspect-ratio: 1 / 1;
+    border-radius: 0px;
+    box-sizing: border-box;
+  }
+  .claninfo-join-section {
+    padding: 10px 8px;
+    gap: 8px;
+    font-size: 0.65em;
+    max-width: 50%;
+  }
+  .claninfo-banner-name {
+    font-size: 1em;
+  }
+  .claninfo-leaderbar {
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 8px;
+    gap: 1px;
+    flex-wrap: nowrap;
+  }
+  .claninfo-leader-info {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2px;
+    width: 100%;
+    text-align: center;
+  }
+  .claninfo-leader-avatar-wrap {
+    margin-bottom: 2px;
+    width: 32px;
+    height: 32px;
+  }
+  .claninfo-leader-avatar {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 20px;
+  }
+  .claninfo-leader-namebox {
+    width: 100%;
+    align-items: center;
+    margin-left: 0;
+    margin-top: 1px;
+  }
+  .claninfo-leader-label {
+    font-size: 0.75em;
+    margin-bottom: 0;
+  }
+  .claninfo-leader-name {
+    font-size: 0.85em;
+  }
+  .claninfo-join-btn {
+    width: 100%;
+    max-width: 100px;
+    padding: 8px 0;
+    font-size: 0.95em;
+    padding: 10px 12px;
+  }
+  .claninfo-details {
+    padding: 10px 6px;
+    gap: 8px;
+  }
+  .clan-labels img {
+    width: 24px;
+    height: 24px;
+  }
+  .clan-stats,
+  .clan-war {
+    gap: 10px;
+    font-size: 0.95em;
+  }
+  .clan-stats div,
+  .clan-war div,
+  .clan-lang {
+    padding: 4px 8px;
+    font-size: 0.95em;
+  }
+  .claninfo-lists-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .claninfo-coleader-list,
+  .claninfo-topmembers-list {
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+  .claninfo-coleaders,
+  .claninfo-topmembers {
+    gap: 8px;
+  }
+  .claninfo-coleader-avatar,
+  .claninfo-topmember-avatar {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* ========== Theme: Light ========== */
+@media (prefers-color-scheme: light) {
+  .claninfo-banner-info {
+    background: linear-gradient(
+      0deg,
+      rgb(0 0 0 / 33%) 70%,
+      rgb(21 21 21 / 0%) 100%
+    );
+  }
+  .claninfo-banner-name {
+    color: #dee2e5;
+    text-shadow: 0 2px 8px #fff8, 0 0 2px #646cff;
+  }
+  .claninfo-leaderbar {
+    background: #f9f9fc;
+    box-shadow: 0 2px 20px rgba(100, 108, 255, 0.541);
+  }
+  .claninfo-leader-name {
+    color: #b26a00;
+    text-shadow: 0 1px 4px #fff8;
+  }
+  .claninfo-details {
+    background: #f9f9fc;
+    box-shadow: 0 2px 12px rgba(100, 108, 255, 0.07);
+  }
+  .claninfo-coleader-list,
+  .claninfo-topmembers-list {
+    background: #f9f9fc;
+    box-shadow: 0 2px 12px rgba(100, 108, 255, 0.07);
+  }
+  .claninfo-coleader-name {
+    color: #646cff;
+  }
+  .claninfo-topmember-name {
+    color: #ff9800;
+  }
+  .claninfo-coleader,
+  .claninfo-topmember {
+    background: #f3f6ff;
+    color: #213547;
+  }
+  .claninfo-coleader-avatar,
+  .claninfo-topmember-avatar {
+    background: #fff;
+    border: 1px solid #e0e7ff;
+  }
+  .claninfo-leaderbar-description {
+    color: #444;
+  }
+  .clan-lang {
+    color: #213547;
+    background: #646cff10;
+  }
+  .clan-labels img {
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(100, 108, 255, 0.08);
+  }
+  .clan-stats div {
+    background: #646cff12;
+    color: #646cff;
+  }
+  .clan-war div {
+    background: #ffd70012;
+    color: #ff9800;
+  }
+}
+
+/* ========== Theme: Dark ========== */
+@media (prefers-color-scheme: dark) {
+  .claninfo-banner-info {
+    background: linear-gradient(
+      0deg,
+      rgb(0 0 0 / 33%) 70%,
+      rgb(21 21 21 / 0%) 100%
+    );
+  }
+  .claninfo-banner-name {
+    color: #dee2e5;
+    text-shadow: 0 2px 8px #fff8, 0 0 2px #646cff;
+  }
+  .claninfo-leaderbar {
+    background: #23272f;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
+    border: #ffd70022 2px solid;
+  }
+  .claninfo-leader-name {
+    color: #ffd700;
+    text-shadow: 0 2px 8px #2228;
+  }
+  .claninfo-details {
+    background: #23272f;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
+    color: #dee2e5;
+  }
+  .claninfo-coleader-list,
+  .claninfo-topmembers-list {
+    background: #23272f;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
+  }
+  .claninfo-coleader-name {
+    color: #aab4ff;
+  }
+  .claninfo-topmember-name {
+    color: #ffd700;
+  }
+  .claninfo-coleader,
+  .claninfo-topmember {
+    background: #23272f;
+    color: #dee2e5;
+  }
+  .claninfo-coleader-avatar,
+  .claninfo-topmember-avatar {
+    background: #23272f;
+    border: 1px solid #444b5a;
+  }
+  .claninfo-leaderbar-description {
+    color: #000000;
+  }
+  .clan-lang {
+    color: #dee2e5;
+    background: #23272f;
+  }
+  .clan-labels img {
+    background: #23272f;
+    box-shadow: 0 2px 8px rgba(100, 108, 255, 0.12);
+  }
+  .clan-stats div {
+    background: #23272f;
+    color: #aab4ff;
+  }
+  .clan-war div {
+    background: #23272f;
+    color: #ffd700;
+  }
+  .claninfo-leader-avatar {
+    background: #222;
+    animation: glow-dark 2s infinite alternate;
+  }
+  @keyframes glow-dark {
+    from {
+      box-shadow: 0 0 6px rgba(0, 255, 255, 0.6),
+        0 0 12px rgba(0, 255, 255, 0.6), 0 0 18px rgba(0, 255, 255, 0.6);
+    }
+    to {
+      box-shadow: 0 0 12px rgba(0, 255, 255, 1), 0 0 24px rgba(0, 255, 255, 1),
+        0 0 36px rgba(0, 255, 255, 1);
+    }
+  }
+}

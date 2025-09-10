@@ -1,0 +1,171 @@
+/* ========== Base ========== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #23272f;
+  padding: 0 18px;
+  height: 54px;
+  box-shadow: 0 2px 12px #0002;
+  position: relative;
+  z-index: 100;
+}
+
+.navbar-menu-btn {
+  background: none;
+  border: none;
+  color: #ffd700;
+  font-size: 1.6em;
+  cursor: pointer;
+  margin-left: -8px;
+}
+
+.navbar-side-menu {
+  position: fixed;
+  top: 0;
+  left: -220px;
+  width: 200px;
+  height: 100vh;
+  background: #23272f;
+  box-shadow: 2px 0 12px #0003;
+  transition: left 0.3s, visibility 0.3s;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  padding-top: 18px;
+  visibility: hidden;
+  overflow-y: auto;
+}
+.navbar-side-menu.open {
+  left: 0;
+  visibility: visible;
+}
+.navbar-close-btn {
+  background: none;
+  border: none;
+  color: #ffd700;
+  font-size: 1.6em;
+  align-self: flex-end;
+  margin: 0 12px 18px 0;
+  cursor: pointer;
+}
+.navbar-side-menu ul {
+  list-style: none;
+  padding: 0 18px;
+  margin: 0;
+}
+.navbar-side-menu li {
+  margin-bottom: 18px;
+}
+.navbar-side-menu a {
+  color: #ffd700;
+  text-decoration: none;
+  font-size: 1.05em;
+  font-weight: 500;
+}
+
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.navbar-icon-btn {
+  background: none;
+  border: none;
+  color: #ffd700;
+  font-size: 1.15em;
+  cursor: pointer;
+  padding: 4px;
+}
+.navbar-icon-btn:focus {
+  outline: 2px solid #646cff;
+}
+.navbar-icon {
+  vertical-align: middle;
+}
+
+.navbar-menu-active {
+  font-weight: bold;
+  background: #c0bdb022;
+  color: #e53935 !important;
+  border-radius: 6px;
+  padding: 2px 8px;
+  transition: background 0.2s;
+}
+
+/* ========== Responsive: Dọc tối đa 600px ========== */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0 4px;
+    height: 46px;
+  }
+  .navbar-menu-btn {
+    font-size: 1.25em;
+    margin-left: -4px;
+  }
+  .navbar-side-menu {
+    width: 70vw;
+    min-width: 120px;
+    padding-top: 10px;
+    left: -70vw;
+    max-width: 200px;
+  }
+  .navbar-side-menu.open {
+    left: 0;
+  }
+  .navbar-close-btn {
+    font-size: 1.25em;
+    margin-right: 6px;
+  }
+  .navbar-icons {
+    gap: 8px;
+  }
+  .navbar-icon-btn {
+    font-size: 0.95em;
+    padding: 2px;
+  }
+}
+
+/* ========== Chế độ sáng ========== */
+@media (prefers-color-scheme: light) {
+  .navbar {
+    background: #f9f9fc;
+    box-shadow: 0 2px 12px #646cff11;
+  }
+  .navbar-side-menu {
+    background: #f9f9fc;
+    box-shadow: 2px 0 12px #646cff22;
+  }
+  .navbar-menu-btn,
+  .navbar-close-btn,
+  .navbar-side-menu a,
+  .navbar-icon-btn {
+    color: #646cff;
+  }
+  .navbar-menu-active {
+    background: #646cff22;
+    color: #646cff !important;
+  }
+}
+
+/* ========== Chế độ tối ========== */
+@media (prefers-color-scheme: dark) {
+  .navbar {
+    background: #23272f;
+    box-shadow: 0 2px 12px #0002;
+  }
+  .navbar-side-menu {
+    background: #23272f;
+    box-shadow: 2px 0 12px #0003;
+  }
+  .navbar-menu-btn,
+  .navbar-close-btn,
+  .navbar-side-menu a,
+  .navbar-icon-btn {
+    color: #ffd700;
+  }
+  .navbar-menu-active {
+    background: #ffd70022;
+    color: #ffd700 !important;
+  }
+}

@@ -1,0 +1,1574 @@
+[
+  {
+    "player": "CƯỜNG ĐÂY NÈ",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 59.91,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 35,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bfe9a20aa66b232a4d979e",
+        "tag": "#YPGYGLLLC",
+        "clantag": "#UPQJR8JR",
+        "name": "CƯỜNG ĐÂY NÈ",
+        "date": "2025-09-09",
+        "attackWins": 0,
+        "createdAt": "2025-09-09T08:47:30.173Z",
+        "updatedAt": "2025-09-09T08:47:30.173Z",
+        "__v": 0
+      }
+    ]
+  },
+  {
+    "player": "Zuka béo",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 57.31,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 44,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 3,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9881c62e41e16fb7656f",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#QYLR90QVR",
+        "__v": 0,
+        "attackWins": 32,
+        "createdAt": "2025-09-09T03:01:23.229Z",
+        "name": "Zuka béo",
+        "updatedAt": "2025-09-09T03:01:23.229Z"
+      }
+    ]
+  },
+  {
+    "player": "2 rìu xác đâu",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 25.56,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 39,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 3,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9882c62e41e16fb76574",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#LGQQU9U2P",
+        "__v": 0,
+        "attackWins": 184,
+        "createdAt": "2025-09-09T03:01:24.095Z",
+        "name": "2 rìu xác đâu",
+        "updatedAt": "2025-09-09T03:01:24.095Z"
+      }
+    ]
+  },
+  {
+    "player": "Hugh",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 31.95,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 40,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 3,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9881c62e41e16fb76570",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#QUQUUJJYV",
+        "__v": 0,
+        "attackWins": 38,
+        "createdAt": "2025-09-09T03:01:23.389Z",
+        "name": "Hugh",
+        "updatedAt": "2025-09-09T03:01:23.389Z"
+      }
+    ]
+  },
+  {
+    "player": "Độ Tày",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 18,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 29,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9882c62e41e16fb76571",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#YLGQPRJU2",
+        "__v": 0,
+        "attackWins": 17,
+        "createdAt": "2025-09-09T03:01:23.565Z",
+        "name": "Độ Tày",
+        "updatedAt": "2025-09-09T03:01:23.565Z"
+      }
+    ]
+  },
+  {
+    "player": "CU Trường 1",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 25.65,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 30,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9882c62e41e16fb76572",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#PU2JYR2CC",
+        "__v": 0,
+        "attackWins": 11,
+        "createdAt": "2025-09-09T03:01:23.735Z",
+        "name": "CU Trường 1",
+        "updatedAt": "2025-09-09T03:01:23.735Z"
+      }
+    ]
+  },
+  {
+    "player": "Lý Hoài Nam",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 44.7,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 43,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 4,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9882c62e41e16fb76573",
+        "tag": "#Y8UJPRJ2Y",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 5,
+        "createdAt": "2025-09-09T03:01:23.929Z",
+        "name": "Lý Hoài Nam",
+        "updatedAt": "2025-09-09T03:01:23.929Z"
+      }
+    ]
+  },
+  {
+    "player": "Thích•Cơ•Rút",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 20.08,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 41,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 3,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9883c62e41e16fb76577",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#Q92YP2QC2",
+        "__v": 0,
+        "attackWins": 242,
+        "createdAt": "2025-09-09T03:01:24.684Z",
+        "name": "Thích•Cơ•Rút",
+        "updatedAt": "2025-09-09T03:01:24.684Z"
+      }
+    ]
+  },
+  {
+    "player": "Vô Thường",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 44.34,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 34,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9882c62e41e16fb76575",
+        "tag": "#890QQ2UPC",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 9,
+        "createdAt": "2025-09-09T03:01:24.257Z",
+        "name": "Vô Thường",
+        "updatedAt": "2025-09-09T03:01:24.257Z"
+      }
+    ]
+  },
+  {
+    "player": "Tinqueen_zz_",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 36.49,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 35,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 1,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9883c62e41e16fb76576",
+        "tag": "#QQ0RRYPU8",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "__v": 0,
+        "attackWins": 36,
+        "createdAt": "2025-09-09T03:01:24.495Z",
+        "name": "Tinqueen_zz_",
+        "updatedAt": "2025-09-09T03:01:24.495Z"
+      }
+    ]
+  },
+  {
+    "player": "hà đức mạnh",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 17.45,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 29,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9883c62e41e16fb76578",
+        "tag": "#YCGYVGCQG",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "__v": 0,
+        "attackWins": 37,
+        "createdAt": "2025-09-09T03:01:24.848Z",
+        "name": "hà đức mạnh",
+        "updatedAt": "2025-09-09T03:01:24.848Z"
+      }
+    ]
+  },
+  {
+    "player": "Omachii",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 48.24,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 35,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9883c62e41e16fb76579",
+        "tag": "#LP98JGYJ2",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 17,
+        "createdAt": "2025-09-09T03:01:25.044Z",
+        "name": "Omachii",
+        "updatedAt": "2025-09-09T03:01:25.044Z"
+      }
+    ]
+  },
+  {
+    "player": "kha",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 2.75,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 30,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 3,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9883c62e41e16fb7657a",
+        "tag": "#Q9YVP8YJQ",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 12,
+        "createdAt": "2025-09-09T03:01:25.269Z",
+        "name": "kha",
+        "updatedAt": "2025-09-09T03:01:25.269Z"
+      }
+    ]
+  },
+  {
+    "player": "Hilou",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 23.95,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 41,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 3,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9884c62e41e16fb7657b",
+        "tag": "#QV9RV8JPP",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 42,
+        "createdAt": "2025-09-09T03:01:25.445Z",
+        "name": "Hilou",
+        "updatedAt": "2025-09-09T03:01:25.445Z"
+      }
+    ]
+  },
+  {
+    "player": "vanduc_!?",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 17,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 1,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9884c62e41e16fb7657e",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#L28YYUGCG",
+        "__v": 0,
+        "attackWins": 21,
+        "createdAt": "2025-09-09T03:01:26.047Z",
+        "name": "vanduc_!?",
+        "updatedAt": "2025-09-09T03:01:26.047Z"
+      }
+    ]
+  },
+  {
+    "player": "PeN71",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 24,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 3,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9884c62e41e16fb7657c",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#LU8CQG8RL",
+        "__v": 0,
+        "attackWins": 44,
+        "createdAt": "2025-09-09T03:01:25.721Z",
+        "name": "PeN71",
+        "updatedAt": "2025-09-09T03:01:25.721Z"
+      }
+    ]
+  },
+  {
+    "player": "BLUE",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 2.13,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 17,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9884c62e41e16fb7657d",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#LU890LQRR",
+        "__v": 0,
+        "attackWins": 18,
+        "createdAt": "2025-09-09T03:01:25.900Z",
+        "name": "BLUE",
+        "updatedAt": "2025-09-09T03:01:25.900Z"
+      }
+    ]
+  },
+  {
+    "player": "Bình NoBi",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 15.65,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 37,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 3,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9884c62e41e16fb76580",
+        "tag": "#QJ90LGU9Y",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 18,
+        "createdAt": "2025-09-09T03:01:26.370Z",
+        "name": "Bình NoBi",
+        "updatedAt": "2025-09-09T03:01:26.370Z"
+      }
+    ]
+  },
+  {
+    "player": "xike không che",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 38.21,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 30,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9884c62e41e16fb7657f",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#GLGLYGLQV",
+        "__v": 0,
+        "attackWins": 26,
+        "createdAt": "2025-09-09T03:01:26.205Z",
+        "name": "xike không che",
+        "updatedAt": "2025-09-09T03:01:26.205Z"
+      }
+    ]
+  },
+  {
+    "player": "Bé•Quỳnh",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 8.52,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 20,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 2,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9885c62e41e16fb76581",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#G0JP2CG8U",
+        "__v": 0,
+        "attackWins": 12,
+        "createdAt": "2025-09-09T03:01:26.524Z",
+        "name": "Bé•Quỳnh",
+        "updatedAt": "2025-09-09T03:01:26.524Z"
+      }
+    ]
+  },
+  {
+    "player": "Nhiếp Ly",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 24.43,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 29,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 1,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9885c62e41e16fb76582",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#L829808UY",
+        "__v": 0,
+        "attackWins": 6,
+        "createdAt": "2025-09-09T03:01:26.684Z",
+        "name": "Nhiếp Ly",
+        "updatedAt": "2025-09-09T03:01:26.684Z"
+      }
+    ]
+  },
+  {
+    "player": "HiểnOnePiece",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 4.26,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 21,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9885c62e41e16fb76583",
+        "tag": "#Q299V9VGY",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 22,
+        "createdAt": "2025-09-09T03:01:26.939Z",
+        "name": "HiểnOnePiece",
+        "updatedAt": "2025-09-09T03:01:26.939Z"
+      }
+    ]
+  },
+  {
+    "player": "newbie?",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 21.08,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 32,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 2,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9885c62e41e16fb76584",
+        "tag": "#LUR9YPP29",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "__v": 0,
+        "attackWins": 36,
+        "createdAt": "2025-09-09T03:01:27.082Z",
+        "name": "newbie?",
+        "updatedAt": "2025-09-09T03:01:27.082Z"
+      }
+    ]
+  },
+  {
+    "player": "tac404",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 3.13,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 6,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9886c62e41e16fb76586",
+        "tag": "#9Y8Y0LG9J",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "__v": 0,
+        "attackWins": 0,
+        "createdAt": "2025-09-09T03:01:27.447Z",
+        "name": "tac404",
+        "updatedAt": "2025-09-09T03:01:27.447Z"
+      }
+    ]
+  },
+  {
+    "player": "MyName",
+    "scores": []
+  },
+  {
+    "player": "Minh Hoàng ❤️",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 2.96,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 22,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9886c62e41e16fb76587",
+        "tag": "#QRU9P0QJV",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 32,
+        "createdAt": "2025-09-09T03:01:27.609Z",
+        "name": "Minh Hoàng ❤️",
+        "updatedAt": "2025-09-09T03:01:27.609Z"
+      }
+    ]
+  },
+  {
+    "player": "CHÚ VOI CON",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 6.09,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 21,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9886c62e41e16fb7658a",
+        "tag": "#L98CVJYVY",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 15,
+        "createdAt": "2025-09-09T03:01:28.082Z",
+        "name": "CHÚ VOI CON",
+        "updatedAt": "2025-09-09T03:01:28.082Z"
+      }
+    ]
+  },
+  {
+    "player": "hoài hận",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 8.79,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 25,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9886c62e41e16fb76588",
+        "tag": "#GGGULCYGY",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 4,
+        "createdAt": "2025-09-09T03:01:27.765Z",
+        "name": "hoài hận",
+        "updatedAt": "2025-09-09T03:01:27.765Z"
+      }
+    ]
+  },
+  {
+    "player": "Le Thi Ninh✨️",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 11,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9886c62e41e16fb76589",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#QYYVRGPUP",
+        "__v": 0,
+        "attackWins": 0,
+        "createdAt": "2025-09-09T03:01:27.925Z",
+        "name": "Le Thi Ninh✨️",
+        "updatedAt": "2025-09-09T03:01:27.925Z"
+      }
+    ]
+  },
+  {
+    "player": "NgoHaiDang",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 26.04,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 21,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9886c62e41e16fb7658b",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#LGPQRYJPG",
+        "__v": 0,
+        "attackWins": 0,
+        "createdAt": "2025-09-09T03:01:28.282Z",
+        "name": "NgoHaiDang",
+        "updatedAt": "2025-09-09T03:01:28.282Z"
+      }
+    ]
+  },
+  {
+    "player": "Thợ Săn Quý Bà",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 21.96,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 13,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9887c62e41e16fb7658c",
+        "tag": "#L2CCGVYV0",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "__v": 0,
+        "attackWins": 0,
+        "createdAt": "2025-09-09T03:01:28.446Z",
+        "name": "Thợ Săn Quý Bà",
+        "updatedAt": "2025-09-09T03:01:28.446Z"
+      }
+    ]
+  },
+  {
+    "player": "ེhunterི",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 1.83,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 31,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 3,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9887c62e41e16fb7658d",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#2U0V82V8C",
+        "__v": 0,
+        "attackWins": 29,
+        "createdAt": "2025-09-09T03:01:28.604Z",
+        "name": "ེhunterི",
+        "updatedAt": "2025-09-09T03:01:28.604Z"
+      }
+    ]
+  },
+  {
+    "player": "tâm",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9887c62e41e16fb7658f",
+        "tag": "#G8GRRG8LQ",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "__v": 0,
+        "attackWins": 0,
+        "createdAt": "2025-09-09T03:01:28.931Z",
+        "name": "tâm",
+        "updatedAt": "2025-09-09T03:01:28.931Z"
+      }
+    ]
+  },
+  {
+    "player": "Vua hải tặc :))",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 14,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9887c62e41e16fb7658e",
+        "tag": "#QRQU0Y8L0",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 6,
+        "createdAt": "2025-09-09T03:01:28.758Z",
+        "name": "Vua hải tặc :))",
+        "updatedAt": "2025-09-09T03:01:28.758Z"
+      }
+    ]
+  },
+  {
+    "player": "dangerous",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 8,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 3,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9887c62e41e16fb76590",
+        "tag": "#GJR82RJ08",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 42,
+        "createdAt": "2025-09-09T03:01:29.086Z",
+        "name": "dangerous",
+        "updatedAt": "2025-09-09T03:01:29.086Z"
+      }
+    ]
+  },
+  {
+    "player": "Phương Thuỳ",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 8.26,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 23,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9887c62e41e16fb76591",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#Y2CRYVRQL",
+        "__v": 0,
+        "attackWins": 3,
+        "createdAt": "2025-09-09T03:01:29.243Z",
+        "name": "Phương Thuỳ",
+        "updatedAt": "2025-09-09T03:01:29.243Z"
+      }
+    ]
+  },
+  {
+    "player": "ngân tb",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 17.93,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 35,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 2,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9888c62e41e16fb76592",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#GUQU9JUGQ",
+        "__v": 0,
+        "attackWins": 11,
+        "createdAt": "2025-09-09T03:01:29.488Z",
+        "name": "ngân tb",
+        "updatedAt": "2025-09-09T03:01:29.488Z"
+      }
+    ]
+  },
+  {
+    "player": "Aresbaka",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 4,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9888c62e41e16fb76595",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#GCYUU9JQG",
+        "__v": 0,
+        "attackWins": 5,
+        "createdAt": "2025-09-09T03:01:29.967Z",
+        "name": "Aresbaka",
+        "updatedAt": "2025-09-09T03:01:29.967Z"
+      }
+    ]
+  },
+  {
+    "player": "VangCuteee",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 2,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 20,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 1,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9888c62e41e16fb76593",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#G82LL89JQ",
+        "__v": 0,
+        "attackWins": 69,
+        "createdAt": "2025-09-09T03:01:29.644Z",
+        "name": "VangCuteee",
+        "updatedAt": "2025-09-09T03:01:29.644Z"
+      }
+    ]
+  },
+  {
+    "player": "kai vang",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 10.6,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 25,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9888c62e41e16fb76594",
+        "tag": "#GRGP2Y999",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 9,
+        "createdAt": "2025-09-09T03:01:29.820Z",
+        "name": "kai vang",
+        "updatedAt": "2025-09-09T03:01:29.820Z"
+      }
+    ]
+  },
+  {
+    "player": "ACE•Bin",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 4,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9888c62e41e16fb76596",
+        "tag": "#GPR8GY298",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 6,
+        "createdAt": "2025-09-09T03:01:30.149Z",
+        "name": "ACE•Bin",
+        "updatedAt": "2025-09-09T03:01:30.149Z"
+      }
+    ]
+  },
+  {
+    "player": "motcaiten",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 3.09,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 20,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 2,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9889c62e41e16fb76597",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#GLQ0UJ9YU",
+        "__v": 0,
+        "attackWins": 5,
+        "createdAt": "2025-09-09T03:01:30.441Z",
+        "name": "motcaiten",
+        "updatedAt": "2025-09-09T03:01:30.441Z"
+      }
+    ]
+  },
+  {
+    "player": "๖²⁴ʱQAηɦ︵¿¿",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 2,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 18,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 3,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9889c62e41e16fb76598",
+        "tag": "#QJY2QV2JQ",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 4,
+        "createdAt": "2025-09-09T03:01:30.661Z",
+        "name": "๖²⁴ʱQAηɦ︵¿¿",
+        "updatedAt": "2025-09-09T03:01:30.661Z"
+      }
+    ]
+  },
+  {
+    "player": "quyquyquy",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 2,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 14,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9889c62e41e16fb76599",
+        "tag": "#GJL9J2VVG",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 17,
+        "createdAt": "2025-09-09T03:01:30.930Z",
+        "name": "quyquyquy",
+        "updatedAt": "2025-09-09T03:01:30.930Z"
+      }
+    ]
+  },
+  {
+    "player": "ha",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 15,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9889c62e41e16fb7659a",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#CPL2098V",
+        "__v": 0,
+        "attackWins": 12,
+        "createdAt": "2025-09-09T03:01:31.083Z",
+        "name": "ha",
+        "updatedAt": "2025-09-09T03:01:31.083Z"
+      }
+    ]
+  },
+  {
+    "player": "Skill•LV Max",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 21,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 3,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9889c62e41e16fb7659b",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#Q0R88QLQG",
+        "__v": 0,
+        "attackWins": 22,
+        "createdAt": "2025-09-09T03:01:31.253Z",
+        "name": "Skill•LV Max",
+        "updatedAt": "2025-09-09T03:01:31.253Z"
+      }
+    ]
+  },
+  {
+    "player": "hạnh",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 4,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 1,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf9889c62e41e16fb7659c",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#G92P2089Y",
+        "__v": 0,
+        "attackWins": 3,
+        "createdAt": "2025-09-09T03:01:31.407Z",
+        "name": "hạnh",
+        "updatedAt": "2025-09-09T03:01:31.407Z"
+      }
+    ]
+  },
+  {
+    "player": "Mine",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf988ac62e41e16fb7659d",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "tag": "#Q8VCR2UVY",
+        "__v": 0,
+        "attackWins": 0,
+        "createdAt": "2025-09-09T03:01:31.605Z",
+        "name": "Mine",
+        "updatedAt": "2025-09-09T03:01:31.605Z"
+      }
+    ]
+  },
+  {
+    "player": "sabin",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 4,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf988ac62e41e16fb7659e",
+        "tag": "#YLPGCQYJC",
+        "clantag": "#UPQJR8JR",
+        "date": "2025-09-09",
+        "__v": 0,
+        "attackWins": 0,
+        "createdAt": "2025-09-09T03:01:31.769Z",
+        "name": "sabin",
+        "updatedAt": "2025-09-09T03:01:31.769Z"
+      }
+    ]
+  },
+  {
+    "player": "—_—TOM—_—",
+    "scores": [
+      {
+        "warPoints": {
+          "value": 4.24,
+          "hidden": false
+        },
+        "InfluencePoints": {
+          "value": 26,
+          "hidden": false
+        },
+        "activepoints": {
+          "value": 2,
+          "hidden": false
+        },
+        "clanGamePoints": {
+          "value": 0,
+          "hidden": false
+        },
+        "_id": "68bf988ac62e41e16fb7659f",
+        "tag": "#GRQQQRQUQ",
+        "date": "2025-09-09",
+        "clantag": "#UPQJR8JR",
+        "__v": 0,
+        "attackWins": 9,
+        "createdAt": "2025-09-09T03:01:31.941Z",
+        "name": "—_—TOM—_—",
+        "updatedAt": "2025-09-09T03:01:31.941Z"
+      }
+    ]
+  }
+]

@@ -1,0 +1,167 @@
+/* Trang tổng */
+.memberlist-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 18px 8px 32px 8px;
+  background: var(--memberlist-bg, #f9f9fc);
+  min-height: 100vh;
+}
+
+/* Bảng điều khiển */
+.memberlist-controls {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  background: var(--memberlist-controls-bg, #fff);
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #646cff11;
+}
+.memberlist-controls label {
+  font-weight: 500;
+  color: #646cff;
+}
+.memberlist-controls select {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #646cff55;
+  background: #fff;
+  color: #213547;
+  font-size: 1em;
+}
+
+/* Bảng danh sách */
+.memberlist-table-wrap {
+  overflow-x: auto;
+  background: var(--memberlist-table-bg, #fff);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #646cff11;
+}
+.memberlist-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 0;
+  table-layout: auto;
+}
+.memberlist-table th,
+.memberlist-table td {
+  padding: 8px 6px;
+  text-align: center;
+  border-bottom: 1px solid #e0e7ff;
+  font-size: 1em;
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.memberlist-table th {
+  background: #646cff18;
+  color: #646cff;
+  font-weight: 700;
+}
+.memberlist-table tr:nth-child(even) {
+  background: #f3f6ff;
+}
+.memberlist-player {
+  font-weight: 600;
+  color: #213547;
+  width: max-content;
+}
+
+/* Cuộn dọc */
+.memberlist-table-wrap {
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+/* Responsive dọc <=600px */
+@media (max-width: 600px) {
+  .memberlist-page {
+    padding: 8px 2px 18px 2px;
+    font-size: 0.95em;
+  }
+  .memberlist-controls {
+    gap: 8px;
+    padding: 6px 4px;
+    font-size: 0.95em;
+  }
+  .memberlist-table {
+    min-width: 0;
+    table-layout: auto;
+  }
+  .memberlist-table th,
+  .memberlist-table td {
+    padding: 6px 2px;
+    font-size: 0.95em;
+    max-width: 90px;
+  }
+  .memberlist-table-wrap {
+    border-radius: 6px;
+    box-shadow: 0 1px 6px #646cff11;
+    max-height: 320px;
+  }
+}
+
+/* Chế độ sáng */
+@media (prefers-color-scheme: light) {
+  .memberlist-page {
+    background: #f9f9fc;
+  }
+  .memberlist-controls {
+    background: #fff;
+    color: #646cff;
+  }
+  .memberlist-table-wrap {
+    background: #fff;
+  }
+  .memberlist-table th {
+    background: #646cff18;
+    color: #646cff;
+  }
+  .memberlist-table tr:nth-child(even) {
+    background: #f3f6ff;
+  }
+  .memberlist-player {
+    color: #213547;
+  }
+}
+
+/* Chế độ tối */
+@media (prefers-color-scheme: dark) {
+  .memberlist-page {
+    background: #23272f;
+  }
+  .memberlist-controls {
+    background: #23272f;
+    color: #ffd700;
+    box-shadow: 0 2px 8px #0003;
+  }
+  .memberlist-controls label {
+    color: #ffd700;
+  }
+  .memberlist-controls select {
+    background: #23272f;
+    color: #ffd700;
+    border: 1px solid #ffd70055;
+  }
+  .memberlist-table-wrap {
+    background: #23272f;
+    box-shadow: 0 2px 12px #0003;
+  }
+  .memberlist-table th {
+    background: #ffd70018;
+    color: #ffd700;
+  }
+  .memberlist-table tr:nth-child(even) {
+    background: #23272f;
+  }
+  .memberlist-player {
+    color: #ffd700;
+  }
+  .memberlist-table td {
+    color: #dee2e5;
+    border-bottom: 1px solid #444b5a;
+  }
+}
