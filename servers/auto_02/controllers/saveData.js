@@ -205,6 +205,7 @@ export async function saveAllianceData() {
         }
       }
     } else {
+      console.log(`⚠️ Clan ${member} không tham gia CWL, kiểm tra war thường.`);
       const currentWar = await getNormalWarDetails(member);
       if (!currentWar || currentWar.reason === "notFound") {
         console.log("Không có dữ liệu war hoặc trả về lỗi");
