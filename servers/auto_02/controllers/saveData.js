@@ -125,13 +125,13 @@ export async function saveAllianceData() {
       if (war7day.state === "inWar") {
         console.log("Clan đang trong war league");
         //tạo mới hoặc cập nhật trạng thái clanState
+        // Đảm bảo luôn có ClanState cho clan thành viên
         await ClanState.updateOne(
           { clanTag: member },
-          { clanTag: member, stateCwl: true },
+          { $setOnInsert: { clanTag: member, stateCwl: false } },
           { upsert: true }
         );
       }
-
       const clanState = await ClanState.findOne({ clanTag: member });
       const state = clanState ? clanState.stateCwl : false;
 
