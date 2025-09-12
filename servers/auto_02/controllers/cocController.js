@@ -12,124 +12,216 @@ const axiosInstance = axios.create({
 
 // Lấy thông tin player theo tag
 export async function getPlayerByTag(tag) {
-  const response = await axiosInstance.get(
-    `/players/${encodeURIComponent(tag)}`
-  );
-  return response.data;
+  try {
+    const response = await axiosInstance.get(
+      `/players/${encodeURIComponent(tag)}`
+    );
+    return response.data;
+  } catch (err) {
+    console.error("getPlayerByTag error:", err.message);
+    throw err;
+  }
 }
 
 // Lấy thông tin clan theo tag
 export async function getClanByTag(tag) {
-  const response = await axiosInstance.get(`/clans/${encodeURIComponent(tag)}`);
-  return response.data;
+  try {
+    const response = await axiosInstance.get(
+      `/clans/${encodeURIComponent(tag)}`
+    );
+    return response.data;
+  } catch (err) {
+    console.error("getClanByTag error:", err.message);
+    throw err;
+  }
 }
 
 // Lấy danh sách thành viên clan
 export async function getClanMembers(tag) {
-  const response = await axiosInstance.get(
-    `/clans/${encodeURIComponent(tag)}/members`
-  );
-  return response.data.items;
+  try {
+    const response = await axiosInstance.get(
+      `/clans/${encodeURIComponent(tag)}/members`
+    );
+    return response.data.items;
+  } catch (err) {
+    console.error("getClanMembers error:", err.message);
+    throw err;
+  }
 }
 
 // Lấy thông tin war hiện tại của clan
 export async function getCurrentWar(tag) {
-  const response = await axiosInstance.get(
-    `/clans/${encodeURIComponent(tag)}/currentwar`
-  );
-  return response.data;
+  try {
+    const response = await axiosInstance.get(
+      `/clans/${encodeURIComponent(tag)}/currentwar`
+    );
+    return response.data;
+  } catch (err) {
+    console.error("getCurrentWar error:", err.message);
+    throw err;
+  }
 }
 
 // Lấy lịch sử war của clan
 export async function getWarLog(tag) {
-  const response = await axiosInstance.get(
-    `/clans/${encodeURIComponent(tag)}/warlog`
-  );
-  return response.data.items;
+  try {
+    const response = await axiosInstance.get(
+      `/clans/${encodeURIComponent(tag)}/warlog`
+    );
+    return response.data.items;
+  } catch (err) {
+    console.error("getWarLog error:", err.message);
+    throw err;
+  }
 }
 
 // Lấy thông tin chi tiết war normal theo clanTag
 export async function getNormalWarDetails(tag) {
-  const response = await axiosInstance.get(
-    `/clans/${encodeURIComponent(tag)}/currentwar`
-  );
-  return response.data;
+  try {
+    const response = await axiosInstance.get(
+      `/clans/${encodeURIComponent(tag)}/currentwar`
+    );
+    return response.data;
+  } catch (err) {
+    console.error("getNormalWarDetails error:", err.message);
+    throw err;
+  }
 }
 
 // Lấy thông tin nhóm war league hiện tại của clan
-export async function getCurrentWarLeagueGroup(tag) {
-  const response = await axiosInstance.get(
-    `/clans/${encodeURIComponent(tag)}/currentwar/leaguegroup`
-  );
-  return response.data;
+export async function getCurrentWarLeagueGroup(clanTag) {
+  try {
+    const res = await axiosInstance.get(
+      `/clans/${encodeURIComponent(clanTag)}/currentwar/leaguegroup`
+    );
+    return res.data;
+  } catch (err) {
+    if (err.response && err.response.status === 404) {
+      console.log(`⚠️ Clan ${clanTag} không tham gia CWL, bỏ qua.`);
+      return null;
+    } else {
+      console.error("getCurrentWarLeagueGroup error:", err.message);
+      throw err;
+    }
+  }
 }
 
 // Lấy chi tiết war league theo warTag
 export async function getWarLeagueWarDetails(warTag) {
-  const response = await axiosInstance.get(
-    `/clanwarleagues/wars/${encodeURIComponent(warTag)}`
-  );
-  return response.data;
+  try {
+    const response = await axiosInstance.get(
+      `/clanwarleagues/wars/${encodeURIComponent(warTag)}`
+    );
+    return response.data;
+  } catch (err) {
+    console.error("getWarLeagueWarDetails error:", err.message);
+    throw err;
+  }
 }
 
 // Lấy các labels của clan
 export async function getClanLabels(tag) {
-  const response = await axiosInstance.get(
-    `/clans/${encodeURIComponent(tag)}/labels`
-  );
-  return response.data.items;
+  try {
+    const response = await axiosInstance.get(
+      `/clans/${encodeURIComponent(tag)}/labels`
+    );
+    return response.data.items;
+  } catch (err) {
+    console.error("getClanLabels error:", err.message);
+    throw err;
+  }
 }
 
 // Tìm kiếm clan theo tên
 export async function searchClans(name) {
-  const response = await axiosInstance.get(
-    `/clans?name=${encodeURIComponent(name)}`
-  );
-  return response.data.items;
+  try {
+    const response = await axiosInstance.get(
+      `/clans?name=${encodeURIComponent(name)}`
+    );
+    return response.data.items;
+  } catch (err) {
+    console.error("searchClans error:", err.message);
+    throw err;
+  }
 }
 
 // Lấy danh sách location
 export async function getLocations() {
-  const response = await axiosInstance.get(`/locations`);
-  return response.data.items;
+  try {
+    const response = await axiosInstance.get(`/locations`);
+    return response.data.items;
+  } catch (err) {
+    console.error("getLocations error:", err.message);
+    throw err;
+  }
 }
 
 // Lấy bảng xếp hạng clan theo location
 export async function getLocationClanRankings(locationId) {
-  const response = await axiosInstance.get(
-    `/locations/${locationId}/rankings/clans`
-  );
-  return response.data.items;
+  try {
+    const response = await axiosInstance.get(
+      `/locations/${locationId}/rankings/clans`
+    );
+    return response.data.items;
+  } catch (err) {
+    console.error("getLocationClanRankings error:", err.message);
+    throw err;
+  }
 }
 
 // Lấy bảng xếp hạng người chơi theo location
 export async function getLocationPlayerRankings(locationId) {
-  const response = await axiosInstance.get(
-    `/locations/${locationId}/rankings/players`
-  );
-  return response.data.items;
+  try {
+    const response = await axiosInstance.get(
+      `/locations/${locationId}/rankings/players`
+    );
+    return response.data.items;
+  } catch (err) {
+    console.error("getLocationPlayerRankings error:", err.message);
+    throw err;
+  }
 }
 
 // Lấy danh sách league
 export async function getLeagues() {
-  const response = await axiosInstance.get(`/leagues`);
-  return response.data.items;
+  try {
+    const response = await axiosInstance.get(`/leagues`);
+    return response.data.items;
+  } catch (err) {
+    console.error("getLeagues error:", err.message);
+    throw err;
+  }
 }
 
 // Lấy chi tiết league
 export async function getLeagueDetails(leagueId) {
-  const response = await axiosInstance.get(`/leagues/${leagueId}`);
-  return response.data;
+  try {
+    const response = await axiosInstance.get(`/leagues/${leagueId}`);
+    return response.data;
+  } catch (err) {
+    console.error("getLeagueDetails error:", err.message);
+    throw err;
+  }
 }
 
 // Lấy danh sách labels cho clan
 export async function getClanLabelsList() {
-  const response = await axiosInstance.get(`/labels/clans`);
-  return response.data.items;
+  try {
+    const response = await axiosInstance.get(`/labels/clans`);
+    return response.data.items;
+  } catch (err) {
+    console.error("getClanLabelsList error:", err.message);
+    throw err;
+  }
 }
 
 // Lấy danh sách labels cho player
 export async function getPlayerLabelsList() {
-  const response = await axiosInstance.get(`/labels/players`);
-  return response.data.items;
+  try {
+    const response = await axiosInstance.get(`/labels/players`);
+    return response.data.items;
+  } catch (err) {
+    console.error("getPlayerLabelsList error:", err.message);
+    throw err;
+  }
 }
