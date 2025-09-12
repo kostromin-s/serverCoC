@@ -116,10 +116,13 @@ export async function saveAllianceData() {
       { upsert: true }
     );
     console.log(`Player of clan ${clan.name} updated.`);
-
     const war7day = await getCurrentWarLeagueGroup(member);
-    if (war7day.reason !== "notFound") {
-      if (war7day && war7day.state === "inWar") {
+
+    // Nếu API trả về null hoặc lỗi thì bỏ qua
+    if (!war7day) {
+      console.log(`⚠️ Clan ${member} không có dữ liệu CWL, bỏ qua.`);
+    } else if (war7day.reason !== "notFound") {
+      if (war7day.state === "inWar") {
         console.log("Clan đang trong war league");
         //tạo mới hoặc cập nhật trạng thái clanState
         await ClanState.updateOne(
@@ -128,11 +131,11 @@ export async function saveAllianceData() {
           { upsert: true }
         );
       }
+
       const clanState = await ClanState.findOne({ clanTag: member });
       const state = clanState ? clanState.stateCwl : false;
-      //kiểm tra có dữ liệu war7day và đang trong war, nếu dữ liệu lỗi thì bỏ qua
+
       if (state) {
-        // Nếu war7day có trường datetime thì parse
         const rounds = [];
 
         for (const round of war7day.rounds) {
@@ -145,7 +148,8 @@ export async function saveAllianceData() {
               await DelayNode(120);
               continue;
             }
-            // Parse các trường datetime của warDetail
+
+            // Parse datetime
             if (newDataWarDetails.preparationStartTime)
               newDataWarDetails.preparationStartTime = parseCoCDate(
                 newDataWarDetails.preparationStartTime
@@ -158,6 +162,7 @@ export async function saveAllianceData() {
               newDataWarDetails.endTime = parseCoCDate(
                 newDataWarDetails.endTime
               );
+
             await DelayNode(120);
 
             if (
@@ -180,6 +185,7 @@ export async function saveAllianceData() {
               });
             }
           }
+
           await LeagueGroup.updateOne(
             { season: war7day.season, clanTag: member },
             {
@@ -200,7 +206,6 @@ export async function saveAllianceData() {
       }
     } else {
       const currentWar = await getNormalWarDetails(member);
-      //Nếu không có dữ liệu war hoặc trả về lỗi thì bỏ qua
       if (!currentWar || currentWar.reason === "notFound") {
         console.log("Không có dữ liệu war hoặc trả về lỗi");
         continue;
