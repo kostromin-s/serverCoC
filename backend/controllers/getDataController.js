@@ -48,7 +48,7 @@ export async function getWarDetailsWithScores(req, res) {
 export async function getClanTroops(req, res) {
   try {
     const clanTag = req.params.tag;
-    const troops = await Army.find({ clantag: clanTag });
+    const troops = await Army.findOne({ clantag: clanTag });
 
     res.json(troops);
   } catch (err) {

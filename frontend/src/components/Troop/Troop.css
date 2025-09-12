@@ -1,0 +1,175 @@
+/* ========== Troop Square ========== */
+.troop-square {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1;
+  width: 50px !important;
+  height: 50px !important;
+  min-width: 50px !important;
+  min-height: 50px !important;
+  max-width: 50px !important;
+  max-height: 50px !important;
+  overflow: visible;
+  border-radius: 12%;
+  background: #b7d3f1;
+  box-shadow: 0 2px 12px #0003;
+  user-select: none;
+  cursor: pointer;
+}
+
+.troop-square.disabled::after {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* ========== Troop Image ========== */
+.troop-img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  border-radius: 12%;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ========== Troop Level Badge ========== */
+.troop-level-badge {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px !important;
+  height: 18px !important;
+  box-sizing: border-box;
+  padding: 0;
+  overflow: hidden;
+  background: #222;
+  color: #fff;
+  font-size: 0.7em;
+  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px #0006;
+  pointer-events: none;
+  user-select: none;
+  transition: background 0.2s;
+  text-overflow: ellipsis;
+}
+
+.troop-level-badge[maxlevel="true"] {
+  background: #ff9800;
+}
+
+/* ========== Popup Owners ========== */
+.troop-owners-popup {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  min-width: 120px;
+  width: fit-content;
+  max-width: 380px;
+  margin-top: 6px;
+  padding: 8px 10px;
+  background: #23272f;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px #0008;
+  font-size: 0.95em;
+  z-index: 999;
+}
+
+.troop-owners-title {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #ffd700;
+  font-size: 1em;
+}
+
+.troop-owners-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 96px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.troop-owner-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0;
+  border-bottom: 1px solid #444b5a;
+  font-size: 0.97em;
+}
+
+.troop-owner-name {
+  font-weight: 50;
+  color: #fff;
+  margin-right: 8px;
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.troop-owner-lv {
+  color: #ffd700;
+  font-weight: bold;
+  font-size: 0.6em;
+}
+
+/* ========== Troop Active Badge ========== */
+.troop-active-badge {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5px !important;
+  height: 5px !important;
+  border-radius: 100px;
+  box-sizing: border-box;
+  padding: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  transition: background 0.2s;
+}
+
+/* ========== Troop Active Border & Flame Effect ========== */
+.troop-active-border {
+  border: 1px solid var(--border);
+  box-shadow: 0 0 2px 1px var(--glow1), 0 0 4px 1px var(--glow2);
+  animation: flame 3s infinite alternate;
+}
+
+@keyframes flame {
+  0% {
+    box-shadow: 0 0 2px 1px var(--glow1), 0 0 4px 1px var(--glow2);
+    border-color: var(--border);
+  }
+  100% {
+    box-shadow: 0 0 3px 1px var(--glow2), 0 0 5px 2px var(--glow1);
+    border-color: var(--glow1);
+  }
+}
+
+/* ========== Light Mode (Fire Glow: Red/Orange) ========== */
+:root {
+  --glow1: #ffcc80; /* vàng nhạt */
+  --glow2: #ff7043; /* cam đỏ */
+  --border: #ff7043;
+}
+
+/* ========== Dark Mode (Mystic Blue Glow) ========== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --glow1: #82b1ff; /* xanh dương nhạt phát sáng */
+    --glow2: #448aff; /* xanh dương tươi hơn */
+    --border: #2979ff; /* xanh viền đậm */
+  }
+}

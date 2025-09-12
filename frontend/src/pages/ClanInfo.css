@@ -328,6 +328,71 @@
   border-radius: 0;
 }
 
+/* ========== Troop Section ========== */
+.claninfo-troop-section {
+  margin: 32px auto 0 auto;
+  max-width: 980px;
+  padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.troop-group {
+  margin-bottom: 18px;
+}
+.troop-group-title {
+  font-size: 1.15em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #646cff;
+}
+.troop-group-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: flex-end;
+}
+.troop-group-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 40px;
+  min-width: 15px;
+}
+.troop-square {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: 50px;
+  height: 50px;
+  margin: 0 10px 0 0;
+  border-radius: 12%;
+  box-shadow: 0 2px 12px #0003;
+  overflow: visible;
+  user-select: none;
+  cursor: pointer;
+}
+.troop-img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  border-radius: 4px;
+  pointer-events: none;
+  user-select: none;
+}
+.troop-level-badge {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  min-width: 10px;
+  font-size: 0.7em;
+  padding: 1px 3px;
+  border-radius: 4px;
+  background: #222;
+  color: #fff;
+}
+
 /* ========== Responsive ========== */
 @media (max-width: 600px) {
   .claninfo-banner-info {
@@ -436,6 +501,31 @@
     width: 24px;
     height: 24px;
   }
+  .claninfo-troop-section {
+    gap: 18px;
+    padding: 0 2px;
+  }
+  .troop-group-list {
+    gap: 40px;
+    align-items: center;
+  }
+  .troop-group-item {
+    min-width: 10px;
+    width: 15px !important;
+    height: 15px !important;
+    min-height: 15px !important;
+    max-width: 15px !important;
+    max-height: 15px !important;
+  }
+  .troop-group-label {
+    font-size: 0.85em;
+    margin-top: 3px;
+  }
+  .troop-square {
+    width: 60px;
+    height: 60px;
+    margin-left: 18px !important;
+  }
 }
 
 /* ========== Theme: Light ========== */
@@ -537,53 +627,51 @@
     background: #23272f;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
   }
-  .claninfo-coleader-name {
-    color: #aab4ff;
+
+  /* ========== Troop Group Item ========== */
+  .troop-group-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 40px;
+    min-width: 15px;
   }
-  .claninfo-topmember-name {
-    color: #ffd700;
+
+  /* ========== Troop Square ========== */
+  .troop-square {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    width: 50px;
+    height: 50px;
+    margin: 0 10px 0 0;
+    border-radius: 12%;
+    box-shadow: 0 2px 12px #0003;
+    overflow: visible;
+    user-select: none;
+    cursor: pointer;
   }
-  .claninfo-coleader,
-  .claninfo-topmember {
-    background: #23272f;
-    color: #dee2e5;
+
+  /* ========== Troop Image ========== */
+  .troop-img {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    border-radius: 4px;
+    pointer-events: none;
+    user-select: none;
   }
-  .claninfo-coleader-avatar,
-  .claninfo-topmember-avatar {
-    background: #23272f;
-    border: 1px solid #444b5a;
-  }
-  .claninfo-leaderbar-description {
-    color: #000000;
-  }
-  .clan-lang {
-    color: #dee2e5;
-    background: #23272f;
-  }
-  .clan-labels img {
-    background: #23272f;
-    box-shadow: 0 2px 8px rgba(100, 108, 255, 0.12);
-  }
-  .clan-stats div {
-    background: #23272f;
-    color: #aab4ff;
-  }
-  .clan-war div {
-    background: #23272f;
-    color: #ffd700;
-  }
-  .claninfo-leader-avatar {
+
+  /* ========== Troop Level Badge ========== */
+  .troop-level-badge {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    min-width: 10px;
+    font-size: 0.7em;
+    padding: 1px 3px;
+    border-radius: 4px;
     background: #222;
-    animation: glow-dark 2s infinite alternate;
-  }
-  @keyframes glow-dark {
-    from {
-      box-shadow: 0 0 6px rgba(0, 255, 255, 0.6),
-        0 0 12px rgba(0, 255, 255, 0.6), 0 0 18px rgba(0, 255, 255, 0.6);
-    }
-    to {
-      box-shadow: 0 0 12px rgba(0, 255, 255, 1), 0 0 24px rgba(0, 255, 255, 1),
-        0 0 36px rgba(0, 255, 255, 1);
-    }
+    color: #fff;
   }
 }

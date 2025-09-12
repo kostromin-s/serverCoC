@@ -411,6 +411,10 @@ async function detectNewPlayers() {
 async function autoPing() {
   try {
     await axios.get(process.env.URL_server);
+    //mỗi lần ping thành công sẽ in log và thời gian thực hiện
+    console.log(
+      `🔔 Ping server thành công lúc ${new Date().toLocaleTimeString()}`
+    );
   } catch (error) {
     // Không cần log lỗi ping
   }
@@ -422,6 +426,9 @@ function scheduleJob(cronExpression, jobFunction) {
     timezone: "Asia/Ho_Chi_Minh",
   });
 }
+// Schedule job chạy 1 phút 1 lần để ping server
+scheduleJob("*/1 * * * *", autoPing);
+console.log("Đã lên lịch ping server mỗi 1 phút");
 
 // Schedule job chạy 00:01 hàng ngày
 scheduleJob("1 0 * * *", calculateDailyPoints);
@@ -430,10 +437,6 @@ console.log("Đã lên lịch tính điểm hàng ngày vào 00:01");
 // Schedule job chạy 3 phút 1 lần để cập nhật war points
 scheduleJob("*/3 * * * *", updateWarPoints);
 console.log("Đã lên lịch cập nhật war points mỗi 3 phút");
-
-// Schedule job chạy 5 phút 1 lần để ping server
-scheduleJob("*/5 * * * *", autoPing);
-console.log("Đã lên lịch ping server mỗi 5 phút");
 
 // Schedule job chạy 30 giây 1 lần để phát hiện người chơi mới
 scheduleJob("*/30 * * * * *", detectNewPlayers);

@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./ClanInfo.css";
+import Troop from "../components/Troop/Troop.jsx";
+import SuperTroop from "../components/Troop/SuperTroop.jsx";
 
 export default function ClanInfo() {
   const [clanData, setData] = useState(null);
+  const [troopData, setTroopData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // Kích thước troop nhỏ
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 600);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  const troopSize = isMobile ? 15 : 20;
 
   useEffect(() => {
     const myClanTag = encodeURIComponent("#UPQJR8JR");
@@ -19,6 +31,15 @@ export default function ClanInfo() {
         }
 
         setData(response.data);
+
+        const troopResponse = await axios.get(
+          `${import.meta.env.VITE_SERVER_URL}clan/troops/${myClanTag}`
+        );
+        if (!troopResponse.data) {
+          throw new Error("No troop data found");
+        }
+        setTroopData(troopResponse.data);
+        console.log(troopResponse.data);
       } catch (error) {
         setError(error);
       } finally {
@@ -39,6 +60,16 @@ export default function ClanInfo() {
     ?.filter((m) => m.role === "member" || m.role === "admin")
     ?.sort((a, b) => b.trophies - a.trophies)
     ?.slice(0, 5);
+
+  // Các nhóm binh lính
+  const troopGroups = [
+    { title: "Binh lính thường", troops: troopData.normalTroop },
+    { title: "Binh lính siêu cấp", troops: troopData.superTroop },
+    { title: "Binh lính căn cứ thợ xây", troops: troopData.builderBaseTroop },
+    { title: "Cỗ máy chiến đấu", troops: troopData.machineTroop },
+    { title: "Thần chú", troops: troopData.spells },
+  ];
+
   return (
     <>
       <div className="claninfo-banner">
@@ -227,6 +258,40 @@ export default function ClanInfo() {
           )}
         </div>
       )}
+      {/* Hiển thị các nhóm binh lính */}
+      <div className="claninfo-troop-section">
+        {/*Nếu là troop siêu cấp thì hiển thị component SuperTroop */}
+        {troopGroups.map(
+          (group) =>
+            group.troops?.length > 0 && (
+              <TroopGroup
+                key={group.title}
+                title={group.title}
+                troops={group.troops}
+                size={troopSize}
+              />
+            )
+        )}
+      </div>
     </>
+  );
+}
+
+function TroopGroup({ title, troops, size }) {
+  return (
+    <div className="troop-group">
+      <h3 className="troop-group-title">{title}</h3>
+      <div className="troop-group-list">
+        {troops.map((troop) => (
+          <div className="troop-group-item" key={troop.name}>
+            {title === "Binh lính siêu cấp" ? (
+              <SuperTroop troop={troop} size={size} />
+            ) : (
+              <Troop troop={troop} size={size} />
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
