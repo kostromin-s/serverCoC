@@ -11,6 +11,7 @@ import {
   getPlayerByTag,
   getNormalWarDetails,
 } from "./cocController.js";
+import ClanState from "../models/clanState.js";
 
 // Hàm delay
 function DelayNode(ms) {
@@ -117,8 +118,18 @@ export async function saveAllianceData() {
     console.log(`Player of clan ${clan.name} updated.`);
 
     const war7day = await getCurrentWarLeagueGroup(member);
+    if (war7day && war7day.state === "inWar") {
+      console.log("Clan đang trong war league");
+      await ClanState.updateOne(
+        { clanTag: member },
+        { clanTag: member, stateCwl: true },
+        { upsert: true }
+      );
+    }
+    const clanState = await ClanState.findOne({ clanTag: member });
+    const state = clanState ? clanState.stateCwl : false;
     //kiểm tra có dữ liệu war7day và đang trong war, nếu dữ liệu lỗi thì bỏ qua
-    if (war7day && war7day.state !== "notInWar" && war7day.season) {
+    if (state) {
       // Nếu war7day có trường datetime thì parse
       const rounds = [];
 
@@ -172,9 +183,19 @@ export async function saveAllianceData() {
           { upsert: true }
         );
         console.log(`LeagueGroup ${war7day.season} updated with rounds.`);
+        await ClanState.updateOne(
+          { clanTag: member },
+          { clanTag: member, stateCwl: false },
+          { upsert: true }
+        );
       }
     } else {
       const currentWar = await getNormalWarDetails(member);
+      if (!currentWar || !currentWar.state) {
+        console.log("Không có dữ liệu war hiện tại");
+        continue;
+      }
+
       if (currentWar.state === "notInWar") {
         await DelayNode(120);
         console.log("Clan hiện không trong war");
