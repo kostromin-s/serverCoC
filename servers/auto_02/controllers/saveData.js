@@ -117,7 +117,8 @@ export async function saveAllianceData() {
     console.log(`Player of clan ${clan.name} updated.`);
 
     const war7day = await getCurrentWarLeagueGroup(member);
-    if (war7day && war7day.state === "inWar") {
+    //kiểm tra có dữ liệu war7day và đang trong war, nếu dữ liệu lỗi thì bỏ qua
+    if (war7day && war7day.state !== "notInWar" && war7day.season) {
       // Nếu war7day có trường datetime thì parse
       const rounds = [];
 

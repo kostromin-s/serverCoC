@@ -51,7 +51,7 @@ export async function getWarLog(tag) {
 // Lấy thông tin chi tiết war normal theo clanTag
 export async function getNormalWarDetails(tag) {
   const response = await axiosInstance.get(
-    `/clans/${encodeURIComponent(tag)}/war`
+    `/clans/${encodeURIComponent(tag)}/currentwar`
   );
   return response.data;
 }
