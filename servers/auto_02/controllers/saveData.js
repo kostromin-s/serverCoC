@@ -142,6 +142,7 @@ export async function saveAllianceData() {
             const newDataWarDetails = await getWarLeagueWarDetails(war);
             if (!newDataWarDetails || newDataWarDetails.reason === "notFound") {
               console.log("Không có dữ liệu war league hoặc trả về lỗi");
+              await DelayNode(120);
               continue;
             }
             // Parse các trường datetime của warDetail
