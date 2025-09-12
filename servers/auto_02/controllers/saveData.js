@@ -118,91 +118,84 @@ export async function saveAllianceData() {
     console.log(`Player of clan ${clan.name} updated.`);
     const war7day = await getCurrentWarLeagueGroup(member);
 
-    // Nếu API trả về null hoặc lỗi thì bỏ qua
-    if (!war7day) {
-      console.log(`⚠️ Clan ${member} không có dữ liệu CWL, bỏ qua.`);
-    } else if (war7day.reason !== "notFound") {
-      if (war7day.state === "inWar") {
-        console.log("Clan đang trong war league");
-        //tạo mới hoặc cập nhật trạng thái clanState
-        // Đảm bảo luôn có ClanState cho clan thành viên
-        await ClanState.updateOne(
-          { clanTag: member },
-          { $setOnInsert: { clanTag: member, stateCwl: false } },
-          { upsert: true }
-        );
-      }
-      const clanState = await ClanState.findOne({ clanTag: member });
-      const state = clanState ? clanState.stateCwl : false;
+    if (war7day.state === "inWar") {
+      console.log("Clan đang trong war league");
+      //tạo mới hoặc cập nhật trạng thái clanState
+      // Đảm bảo luôn có ClanState cho clan thành viên
+      await ClanState.updateOne(
+        { clanTag: member },
+        { $setOnInsert: { clanTag: member, stateCwl: false } },
+        { upsert: true }
+      );
+    }
+    const clanState = await ClanState.findOne({ clanTag: member });
+    const state = clanState ? clanState.stateCwl : false;
 
-      if (state) {
-        const rounds = [];
+    if (state) {
+      const rounds = [];
 
-        for (const round of war7day.rounds) {
-          for (const war of round.warTags) {
-            if (war === "#0") continue;
+      for (const round of war7day.rounds) {
+        for (const war of round.warTags) {
+          if (war === "#0") continue;
 
-            const newDataWarDetails = await getWarLeagueWarDetails(war);
-            if (!newDataWarDetails || newDataWarDetails.reason === "notFound") {
-              console.log("Không có dữ liệu war league hoặc trả về lỗi");
-              await DelayNode(120);
-              continue;
-            }
-
-            // Parse datetime
-            if (newDataWarDetails.preparationStartTime)
-              newDataWarDetails.preparationStartTime = parseCoCDate(
-                newDataWarDetails.preparationStartTime
-              );
-            if (newDataWarDetails.startTime)
-              newDataWarDetails.startTime = parseCoCDate(
-                newDataWarDetails.startTime
-              );
-            if (newDataWarDetails.endTime)
-              newDataWarDetails.endTime = parseCoCDate(
-                newDataWarDetails.endTime
-              );
-
+          const newDataWarDetails = await getWarLeagueWarDetails(war);
+          if (!newDataWarDetails || newDataWarDetails.reason === "notFound") {
+            console.log("Không có dữ liệu war league hoặc trả về lỗi");
             await DelayNode(120);
-
-            if (
-              newDataWarDetails.clan.tag === member ||
-              newDataWarDetails.opponent.tag === member
-            ) {
-              if (newDataWarDetails.clan.tag === member) {
-                await saveWarData(newDataWarDetails);
-              } else {
-                [newDataWarDetails.clan, newDataWarDetails.opponent] = [
-                  newDataWarDetails.opponent,
-                  newDataWarDetails.clan,
-                ];
-                await saveWarData(newDataWarDetails);
-              }
-              rounds.push({
-                clanTag: newDataWarDetails.clan.tag,
-                opponentTag: newDataWarDetails.opponent.tag,
-                endTime: newDataWarDetails.endTime,
-              });
-            }
+            continue;
           }
 
-          await LeagueGroup.updateOne(
-            { season: war7day.season, clanTag: member },
-            {
-              state: war7day.state,
-              season: war7day.season,
-              clanTag: member,
-              rounds,
-            },
-            { upsert: true }
-          );
-          console.log(`LeagueGroup ${war7day.season} updated with rounds.`);
-          await ClanState.updateOne(
-            { clanTag: member },
-            { clanTag: member, stateCwl: false },
-            { upsert: true }
-          );
+          // Parse datetime
+          if (newDataWarDetails.preparationStartTime)
+            newDataWarDetails.preparationStartTime = parseCoCDate(
+              newDataWarDetails.preparationStartTime
+            );
+          if (newDataWarDetails.startTime)
+            newDataWarDetails.startTime = parseCoCDate(
+              newDataWarDetails.startTime
+            );
+          if (newDataWarDetails.endTime)
+            newDataWarDetails.endTime = parseCoCDate(newDataWarDetails.endTime);
+
+          await DelayNode(120);
+
+          if (
+            newDataWarDetails.clan.tag === member ||
+            newDataWarDetails.opponent.tag === member
+          ) {
+            if (newDataWarDetails.clan.tag === member) {
+              await saveWarData(newDataWarDetails);
+            } else {
+              [newDataWarDetails.clan, newDataWarDetails.opponent] = [
+                newDataWarDetails.opponent,
+                newDataWarDetails.clan,
+              ];
+              await saveWarData(newDataWarDetails);
+            }
+            rounds.push({
+              clanTag: newDataWarDetails.clan.tag,
+              opponentTag: newDataWarDetails.opponent.tag,
+              endTime: newDataWarDetails.endTime,
+            });
+          }
         }
+
+        await LeagueGroup.updateOne(
+          { season: war7day.season, clanTag: member },
+          {
+            state: war7day.state,
+            season: war7day.season,
+            clanTag: member,
+            rounds,
+          },
+          { upsert: true }
+        );
+        console.log(`LeagueGroup ${war7day.season} updated with rounds.`);
+        await ClanState.updateOne(
+          { clanTag: member },
+          { clanTag: member, stateCwl: false },
+          { upsert: true }
+        );
       }
     } else {
       console.log(`⚠️ Clan ${member} không tham gia CWL, kiểm tra war thường.`);
