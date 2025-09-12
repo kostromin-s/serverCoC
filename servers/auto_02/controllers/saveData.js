@@ -140,6 +140,10 @@ export async function saveAllianceData() {
             if (war === "#0") continue;
 
             const newDataWarDetails = await getWarLeagueWarDetails(war);
+            if (!newDataWarDetails || newDataWarDetails.reason === "notFound") {
+              console.log("Không có dữ liệu war league hoặc trả về lỗi");
+              continue;
+            }
             // Parse các trường datetime của warDetail
             if (newDataWarDetails.preparationStartTime)
               newDataWarDetails.preparationStartTime = parseCoCDate(
