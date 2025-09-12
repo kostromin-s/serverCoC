@@ -9,6 +9,7 @@ import {
   getWarLeagueWarDetails,
   getCurrentWar,
   getPlayerByTag,
+  getNormalWarDetails,
 } from "./cocController.js";
 
 // Hàm delay
@@ -105,7 +106,7 @@ export async function saveAllianceData() {
       const playerData = await getPlayerByTag(player.tag);
       if (playerData.joinedDate)
         playerData.joinedDate = parseCoCDate(playerData.joinedDate);
-      await playerOfclan.push(playerData);
+      playerOfclan.push(playerData);
       await DelayNode(120);
     }
     await PlayerSV01.updateOne(
@@ -172,16 +173,7 @@ export async function saveAllianceData() {
         console.log(`LeagueGroup ${war7day.season} updated with rounds.`);
       }
     } else {
-      const currentWar = await getCurrentWar(member);
-      // Parse các trường datetime của currentWar
-      if (currentWar.preparationStartTime)
-        currentWar.preparationStartTime = parseCoCDate(
-          currentWar.preparationStartTime
-        );
-      if (currentWar.startTime)
-        currentWar.startTime = parseCoCDate(currentWar.startTime);
-      if (currentWar.endTime)
-        currentWar.endTime = parseCoCDate(currentWar.endTime);
+      const currentWar = await getNormalWarDetails(member);
       if (currentWar.state === "notInWar") {
         await DelayNode(120);
         console.log("Clan hiện không trong war");
@@ -192,19 +184,3 @@ export async function saveAllianceData() {
     }
   }
 }
-
-// Hôm nay ngày buồn tháng xấu
-// Kính cẩn cầu xin tinh oan cắt gọn
-// Ái luyến hóa không
-// Phong long tiêu tán
-// Đào hoa tiêu trừ
-// Thiên môn chứng giám
-// Trời cao nhân từ
-// Dung nhan tuấn tú
-// Tướng mạo uy phong
-// Tâm cơ hèn nhát
-// Có mà như không
-// Ông tơ bà nguyệt
-// Ái lực vô biên
-// Xin cho được sớm
-// Đứt đoạn tình duyên

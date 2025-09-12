@@ -48,6 +48,14 @@ export async function getWarLog(tag) {
   return response.data.items;
 }
 
+// Lấy thông tin chi tiết war normal theo clanTag
+export async function getNormalWarDetails(tag) {
+  const response = await axiosInstance.get(
+    `/clans/${encodeURIComponent(tag)}/war`
+  );
+  return response.data;
+}
+
 // Lấy thông tin nhóm war league hiện tại của clan
 export async function getCurrentWarLeagueGroup(tag) {
   const response = await axiosInstance.get(
