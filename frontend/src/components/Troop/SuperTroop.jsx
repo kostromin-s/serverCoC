@@ -126,24 +126,14 @@ export default function Troop({ troop }) {
               .map((m, idx) => (
                 <div className="troop-owner-row" key={m.name + idx}>
                   <span className="troop-owner-name">{m.name}</span>
-                  {m.active && (
-                    <div
-                      className="troop-active-badge"
-                      style={{
-                        background: "#27ae60",
-                        color: "#fff",
-                        fontWeight: "bold",
-                        fontSize: "0.7em",
-                        borderRadius: 4,
-                        minWidth: 32,
-                        height: 18,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        boxShadow: "0 2px 8px #0006",
-                        marginLeft: 6,
-                      }}
-                    ></div>
+                  {m.active ? (
+                    <span style={{ color: "#27ae60", fontWeight: "bold" }}>
+                      ◉
+                    </span>
+                  ) : (
+                    <span style={{ color: "#bdc3c7", fontWeight: "bold" }}>
+                      ○
+                    </span>
                   )}
                 </div>
               ))}

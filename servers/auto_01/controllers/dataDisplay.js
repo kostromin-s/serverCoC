@@ -74,6 +74,24 @@ async function buildClanArmy(clantag) {
     }
   }
 
+  //Đối với các troop không có member nào, vẫn giữ lại trong clanArmy với member là mảng rỗng
+  armyModel.forEach((model) => {
+    const villages = ["home", "builderBase"];
+    villages.forEach((village) => {
+      const existingTroop = clanArmy[`${village}Troop`].find(
+        (t) => t.name === model.name
+      );
+      if (!existingTroop) {
+        clanArmy[`${village}Troop`].push({
+          name: model.name,
+          img: model.img,
+          maxLevel: model.maxLevel,
+          member: [],
+        });
+      }
+    });
+  });
+
   // Sắp xếp member theo level giảm dần cho tất cả các loại troop
   Object.keys(clanArmy).forEach((type) => {
     if (Array.isArray(clanArmy[type])) {
