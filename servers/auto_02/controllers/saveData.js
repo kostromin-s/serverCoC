@@ -116,7 +116,7 @@ export async function saveAllianceData() {
       { upsert: true }
     );
     console.log(`Player of clan ${clan.name} updated.`);
-    const war7day = await getCurrentWarLeagueGroup(member);
+    let war7day = await getCurrentWarLeagueGroup(member);
     // Kiểm tra trạng thái war7day
     // Nếu không có war7day, trả về notFound thì gán trạng thái là "notInWar"
     // Nếu có war7day và trạng thái là "inWar" thì tiến hành lưu dữ liệu war league
