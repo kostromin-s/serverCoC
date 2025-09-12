@@ -121,6 +121,7 @@ export async function saveAllianceData() {
     if (war7day.reason !== "notFound") {
       if (war7day && war7day.state === "inWar") {
         console.log("Clan đang trong war league");
+        //tạo mới hoặc cập nhật trạng thái clanState
         await ClanState.updateOne(
           { clanTag: member },
           { clanTag: member, stateCwl: true },
@@ -152,7 +153,6 @@ export async function saveAllianceData() {
               newDataWarDetails.endTime = parseCoCDate(
                 newDataWarDetails.endTime
               );
-            console.log(newDataWarDetails);
             await DelayNode(120);
 
             if (
