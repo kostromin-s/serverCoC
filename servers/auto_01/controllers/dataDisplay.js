@@ -74,18 +74,19 @@ async function buildClanArmy(clantag) {
     }
   }
 
-  //Tìm thêm các troop mẫu chưa có trong clanArmy và thêm vào với member rỗng
-  armyModel.forEach((model) => {
-    const type =
-      model.village === "builderBase" ? "builderBaseTroop" : model.type;
-    if (!clanArmy[type].some((t) => t.name === model.name)) {
-      clanArmy[type].push({
-        name: model.name,
-        img: model.img,
-        maxLevel: model.maxLevel,
-        member: [],
-      });
-    }
+  //Duyệt qua từng nhóm loại troop trong armyModel để đảm bảo tất cả troop đều có như trong mẫu listArmy
+  //Nếu chưa có thì thêm mới với member rỗng
+  //Điều này giúp hiển thị đầy đủ troop trong giao diện dù không có ai sở hữu
+  //không lấy các loại hero, pet, heroEquipment, heroBuilderBaseTroop vì không cần thiết hiển thị tất cả
+  const filteredArmyModel = armyModel.filter(
+    (m) =>
+      m.type !== "hero" &&
+      m.type !== "pet" &&
+      m.type !== "heroEquipment" &&
+      m.type !== "heroBuilderBaseTroop"
+  );
+  filteredArmyModel.forEach((model) => {
+    findOrCreateTroop(model.name, model.village, model.maxLevel);
   });
 
   // Sắp xếp member theo level giảm dần cho tất cả các loại troop
