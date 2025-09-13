@@ -74,17 +74,11 @@ async function buildClanArmy(clantag) {
     }
   }
 
-  //Đối với các troop không có member nào, vẫn giữ lại trong clanArmy với member là mảng rỗng
+  //Tìm thêm các troop mẫu chưa có trong clanArmy và thêm vào với member rỗng
   armyModel.forEach((model) => {
-    // Xác định type cho troop
-    let type = model.type;
-    if (model.type === "normalTroop" && model.village === "builderBase") {
-      type = "builderBaseTroop";
-    }
-    if (!type) type = "normalTroop";
-    // Kiểm tra troop đã tồn tại chưa
-    const exists = clanArmy[type]?.some((t) => t.name === model.name);
-    if (!exists) {
+    const type =
+      model.village === "builderBase" ? "builderBaseTroop" : model.type;
+    if (!clanArmy[type].some((t) => t.name === model.name)) {
       clanArmy[type].push({
         name: model.name,
         img: model.img,
