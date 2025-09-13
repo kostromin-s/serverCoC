@@ -76,20 +76,22 @@ async function buildClanArmy(clantag) {
 
   //Đối với các troop không có member nào, vẫn giữ lại trong clanArmy với member là mảng rỗng
   armyModel.forEach((model) => {
-    const villages = ["home", "builderBase"];
-    villages.forEach((village) => {
-      const existingTroop = clanArmy[`${village}Troop`].find(
-        (t) => t.name === model.name
-      );
-      if (!existingTroop) {
-        clanArmy[`${village}Troop`].push({
-          name: model.name,
-          img: model.img,
-          maxLevel: model.maxLevel,
-          member: [],
-        });
-      }
-    });
+    // Xác định type cho troop
+    let type = model.type;
+    if (model.type === "normalTroop" && model.village === "builderBase") {
+      type = "builderBaseTroop";
+    }
+    if (!type) type = "normalTroop";
+    // Kiểm tra troop đã tồn tại chưa
+    const exists = clanArmy[type]?.some((t) => t.name === model.name);
+    if (!exists) {
+      clanArmy[type].push({
+        name: model.name,
+        img: model.img,
+        maxLevel: model.maxLevel,
+        member: [],
+      });
+    }
   });
 
   // Sắp xếp member theo level giảm dần cho tất cả các loại troop
