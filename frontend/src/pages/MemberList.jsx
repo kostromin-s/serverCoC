@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Memberlist.css";
+import Loading from "../pages/Loading.jsx";
 
 const API_URL = `${
   import.meta.env.VITE_SERVER_URL
@@ -63,22 +64,29 @@ export default function MemberList() {
           </select>
         </label>
       </div>
-      <div className="memberlist-table-wrap">
-        <table className="memberlist-table">
-          <thead>
-            <tr>
-              <th>Hạng</th>
-              <th>Người chơi</th>
-              <th>{SCORE_TYPES.find((t) => t.key === sortType)?.label}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
+      {loading ? (
+        <div
+          style={{
+            height: "120px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Loading />
+        </div>
+      ) : (
+        <div className="memberlist-table-wrap">
+          <table className="memberlist-table">
+            <thead>
               <tr>
-                <td colSpan={4}>Đang tải...</td>
+                <th>Hạng</th>
+                <th>Người chơi</th>
+                <th>{SCORE_TYPES.find((t) => t.key === sortType)?.label}</th>
               </tr>
-            ) : (
-              sortedMembers.map((mem, idx) => {
+            </thead>
+            <tbody>
+              {sortedMembers.map((mem, idx) => {
                 const scoreObj = mem.scores?.[0];
                 const s = scoreObj?.[sortType];
                 return (
@@ -98,11 +106,11 @@ export default function MemberList() {
                     </td>
                   </tr>
                 );
-              })
-            )}
-          </tbody>
-        </table>
-      </div>
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }

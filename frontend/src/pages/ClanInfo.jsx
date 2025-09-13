@@ -3,6 +3,7 @@ import axios from "axios";
 import "./ClanInfo.css";
 import Troop from "../components/Troop/Troop.jsx";
 import SuperTroop from "../components/Troop/SuperTroop.jsx";
+import Loading from "./Loading.jsx";
 
 export default function ClanInfo() {
   const [clanData, setData] = useState(null);
@@ -49,7 +50,7 @@ export default function ClanInfo() {
     fetchData();
   }, []);
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   if (error) {
     return <div>Error: {error.message}</div>;
