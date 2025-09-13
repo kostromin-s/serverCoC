@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Memberlist.css";
 
-const API_URL = "http://localhost:5000/api/clan/playerscores/%23UPQJR8JR";
+const API_URL = `${
+  import.meta.env.VITE_SERVER_URL
+}clan/playerscores/%23UPQJR8JR`;
 const SCORE_TYPES = [
   { key: "warPoints", label: "Lực chiến" },
   { key: "InfluencePoints", label: "Điểm ảnh hưởng" },
