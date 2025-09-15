@@ -430,9 +430,9 @@ function scheduleJob(cronExpression, jobFunction) {
 scheduleJob("*/1 * * * *", autoPing);
 console.log("Đã lên lịch ping server mỗi 1 phút");
 
-// Schedule job chạy 00:01 hàng ngày
-scheduleJob("1 0 * * *", calculateDailyPoints);
-console.log("Đã lên lịch tính điểm hàng ngày vào 00:01");
+// Schedule job chạy 00:05 hàng ngày
+scheduleJob("5 0 * * *", calculateDailyPoints);
+console.log("Đã lên lịch tính điểm hàng ngày vào 00:05");
 
 // Schedule job chạy 3 phút 1 lần để cập nhật war points
 scheduleJob("*/3 * * * *", updateWarPoints);

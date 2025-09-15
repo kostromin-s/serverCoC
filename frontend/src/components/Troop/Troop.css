@@ -17,8 +17,9 @@
   cursor: pointer;
 }
 
-.troop-square.disabled::after {
-  background: rgba(0, 0, 0, 0.5);
+.troop-square.disabled img {
+  background-color: #22222247;
+  filter: grayscale(100%); /* chuyển ảnh thành trắng đen */
 }
 
 /* ========== Troop Image ========== */

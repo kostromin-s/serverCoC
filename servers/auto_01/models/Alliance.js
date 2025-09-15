@@ -21,6 +21,10 @@ const AllianceSchema = new mongoose.Schema(
         message: "Một liên minh không được có nhiều hơn 5 clan.",
       },
     },
+    settings: {
+      resetDay: { type: Number, default: 1 }, // Ngày reset hàng tháng (1-31)
+      dailySupportAvg: { type: Number, default: 150 }, // Mức hỗ trợ trung bình hàng ngày
+    },
     createdAt: { type: Date, default: Date.now },
   },
   { timestamps: true }
