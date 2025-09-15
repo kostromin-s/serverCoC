@@ -15,14 +15,24 @@ app.get("/", (req, res) => {
   res.send("Server auto_01 is running!");
 });
 
+const url0 = process.env.URL_PING;
+const url1 = process.env.URL_PING_1;
+const url2 = process.env.URL_PING_2;
+if (!url0) console.warn("Warning: URL_PING is not defined in .env");
+if (!url1) console.warn("Warning: URL_PING_1 is not defined in .env");
+if (!url2) console.warn("Warning: URL_PING_2 is not defined in .env");
+
 // Ping server every 5 minutes to keep it awake
 function pingauto1() {
   try {
-    fetch("https://servercoc-fypm.onrender.com/");
+    fetch(url2);
     console.log("Pinged server auto_01 to keep it awake.");
 
-    fetch("https://servercoc-be-display.onrender.com/");
+    fetch(url1);
     console.log("Pinged server display to keep it awake.");
+
+    fetch(url0);
+    console.log("Pinged server g317 to keep it awake.");
   } catch (error) {
     console.error("Error pinging server:", error);
   }
