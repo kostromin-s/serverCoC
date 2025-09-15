@@ -221,7 +221,7 @@ async function calculateClanDailyPoints() {
 // Chạy 1 phút 1 lần
 schedule.scheduleJob("*/1 * * * *", updateAllClans);
 
-// Chạy lúc 0h00 mỗi ngày theo giờ việt nam
-schedule.scheduleJob("0 0 * * *", calculateClanDailyPoints, {
-  timezone: "Asia/Ho_Chi_Minh",
-});
+schedule.scheduleJob(
+  { rule: "0 0 * * *", tz: "Asia/Ho_Chi_Minh" },
+  calculateClanDailyPoints
+);
