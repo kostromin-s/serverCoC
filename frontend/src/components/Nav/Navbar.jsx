@@ -10,6 +10,7 @@ export default function Navbar() {
     { label: "Trang chủ", path: "/" },
     { label: "Hội của tôi", path: "/claninfo" },
     { label: "Thành viên hội", path: "/memberlist" },
+    { label: "Nhật ký chiến tranh", path: "/warlog" },
     { label: "Liên hệ", path: "/contact" },
     { label: "Trợ giúp", path: "/help" },
   ];

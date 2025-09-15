@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const clanDaylyPointSchema = new mongoose.Schema({
-  clantag: { type: String, required: true, unique: true },
+  clantag: { type: String, required: true },
   date: { type: String, required: true },
   warPoints: { type: Number, required: true, default: 0 },
   activepoints: { type: Number, required: true, default: 0 },

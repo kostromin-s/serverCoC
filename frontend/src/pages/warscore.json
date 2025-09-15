@@ -1,0 +1,238 @@
+{
+  "_id": {
+    "$oid": "68c535625783c71afaa1e007"
+  },
+  "war": {
+    "$oid": "68c3b904bf42559b4f8fcb18"
+  },
+  "result": "win",
+  "members": [
+    {
+      "tag": "#QVQLVP9CL",
+      "name": "gà rán",
+      "score": -6.6,
+      "title": {
+        "keyWarrior": 0,
+        "giantSlayer": 0,
+        "drop": 2,
+        "lastHit": false
+      },
+      "attacks": 0,
+      "_id": {
+        "$oid": "68c535625783c71afaa1e008"
+      }
+    },
+    {
+      "tag": "#YPGYGLLLC",
+      "name": "CƯỜNG ĐÂY NÈ",
+      "score": 2,
+      "title": {
+        "keyWarrior": 0,
+        "giantSlayer": 0,
+        "drop": 0,
+        "lastHit": false
+      },
+      "attacks": 2,
+      "_id": {
+        "$oid": "68c535625783c71afaa1e009"
+      }
+    },
+    {
+      "tag": "#GJL9J2VVG",
+      "name": "quyquyquy",
+      "score": 5.12,
+      "title": {
+        "keyWarrior": 1,
+        "giantSlayer": 1,
+        "drop": 0,
+        "lastHit": false
+      },
+      "attacks": 2,
+      "_id": {
+        "$oid": "68c535625783c71afaa1e00a"
+      }
+    },
+    {
+      "tag": "#QUQUUJJYV",
+      "name": "Hugh",
+      "score": 3.13,
+      "title": {
+        "keyWarrior": 1,
+        "giantSlayer": 0,
+        "drop": 0,
+        "lastHit": false
+      },
+      "attacks": 2,
+      "_id": {
+        "$oid": "68c535625783c71afaa1e00b"
+      }
+    },
+    {
+      "tag": "#LUR9YPP29",
+      "name": "newbie?",
+      "score": 3.12,
+      "title": {
+        "keyWarrior": 1,
+        "giantSlayer": 0,
+        "drop": 0,
+        "lastHit": false
+      },
+      "attacks": 2,
+      "_id": {
+        "$oid": "68c535625783c71afaa1e00c"
+      }
+    },
+    {
+      "tag": "#GJR82RJ08",
+      "name": "dangerous",
+      "score": 2,
+      "title": {
+        "keyWarrior": 0,
+        "giantSlayer": 0,
+        "drop": 0,
+        "lastHit": false
+      },
+      "attacks": 2,
+      "_id": {
+        "$oid": "68c535625783c71afaa1e00d"
+      }
+    },
+    {
+      "tag": "#Y8UJPRJ2Y",
+      "name": "Lý Hoài Nam",
+      "score": 4.3,
+      "title": {
+        "keyWarrior": 2,
+        "giantSlayer": 0,
+        "drop": 0,
+        "lastHit": false
+      },
+      "attacks": 2,
+      "_id": {
+        "$oid": "68c535625783c71afaa1e00e"
+      }
+    },
+    {
+      "tag": "#Q9YVP8YJQ",
+      "name": "kha",
+      "score": 3.13,
+      "title": {
+        "keyWarrior": 1,
+        "giantSlayer": 0,
+        "drop": 0,
+        "lastHit": false
+      },
+      "attacks": 2,
+      "_id": {
+        "$oid": "68c535625783c71afaa1e00f"
+      }
+    },
+    {
+      "tag": "#890QQ2UPC",
+      "name": "Vô Thường",
+      "score": 4.26,
+      "title": {
+        "keyWarrior": 2,
+        "giantSlayer": 0,
+        "drop": 0,
+        "lastHit": false
+      },
+      "attacks": 2,
+      "_id": {
+        "$oid": "68c535625783c71afaa1e010"
+      }
+    },
+    {
+      "tag": "#QJ90LGU9Y",
+      "name": "Bình NoBi",
+      "score": 3.13,
+      "title": {
+        "keyWarrior": 1,
+        "giantSlayer": 0,
+        "drop": 0,
+        "lastHit": false
+      },
+      "attacks": 2,
+      "_id": {
+        "$oid": "68c535625783c71afaa1e011"
+      }
+    },
+    {
+      "tag": "#G0JP2CG8U",
+      "name": "Bé•Quỳnh",
+      "score": 4.26,
+      "title": {
+        "keyWarrior": 2,
+        "giantSlayer": 0,
+        "drop": 0,
+        "lastHit": false
+      },
+      "attacks": 2,
+      "_id": {
+        "$oid": "68c535625783c71afaa1e012"
+      }
+    },
+    {
+      "tag": "#LP98JGYJ2",
+      "name": "Omachii",
+      "score": 4.28,
+      "title": {
+        "keyWarrior": 2,
+        "giantSlayer": 0,
+        "drop": 0,
+        "lastHit": false
+      },
+      "attacks": 2,
+      "_id": {
+        "$oid": "68c535625783c71afaa1e013"
+      }
+    },
+    {
+      "tag": "#QV9RV8JPP",
+      "name": "Hilou",
+      "score": 2,
+      "title": {
+        "keyWarrior": 0,
+        "giantSlayer": 0,
+        "drop": 0,
+        "lastHit": false
+      },
+      "attacks": 2,
+      "_id": {
+        "$oid": "68c535625783c71afaa1e014"
+      }
+    },
+    {
+      "tag": "#GUQU9JUGQ",
+      "name": "ngân tb",
+      "score": -6.800000000000001,
+      "title": {
+        "keyWarrior": 0,
+        "giantSlayer": 0,
+        "drop": 2,
+        "lastHit": false
+      },
+      "attacks": 0,
+      "_id": {
+        "$oid": "68c535625783c71afaa1e015"
+      }
+    },
+    {
+      "tag": "#GQGUPPCVC",
+      "name": "đen chường 47",
+      "score": 4.26,
+      "title": {
+        "keyWarrior": 2,
+        "giantSlayer": 0,
+        "drop": 0,
+        "lastHit": false
+      },
+      "attacks": 2,
+      "_id": {
+        "$oid": "68c535625783c71afaa1e016"
+      }
+    }
+  ],
+  "addscore": false,
+  "__v": 0
+}

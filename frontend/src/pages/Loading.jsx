@@ -9,7 +9,6 @@ export default function Loading() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: "#f9f9fc",
       }}
     >
       <h2 style={{ color: "#646cff", marginBottom: "24px" }}>
@@ -43,6 +42,17 @@ export default function Loading() {
           0%, 100% { transform: scaleY(0.5);}
           40% { transform: scaleY(1.4);}
           60% { transform: scaleY(0.8);}
+        }
+        @media (prefers-color-scheme: dark) {
+          .wave-bar {
+            background: #ffd700;
+          }
+          body, .wave-loading-bar {
+            background: #23272f !important;
+          }
+          h2 {
+            color: #ffd700 !important;
+          }
         }
         `}
       </style>
