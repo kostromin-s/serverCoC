@@ -29,15 +29,16 @@ app.get("/", (req, res) => {
 });
 
 function startAutoPing() {
-  const url = process.env.URL_PING;
-  if (!url) return;
+  const url0 = process.env.URL_PING;
+  const url1 = process.env.URL_PING_1;
+  const url2 = process.env.URL_PING_2;
+  if (!url0) return;
   setInterval(async () => {
     try {
-      await axios.get(url);
-      console.log(`Pinged ${url} at ${new Date().toISOString()}`);
-      fetch("https://servercoc-be-display.onrender.com");
-      fetch("https://servercoc-fypm.onrender.com/");
-      fetch("https://servercoc-g317.onrender.com");
+      await fetch(url0);
+      await fetch(url1);
+      await fetch(url2);
+      console.log(`Pinged ${url0} at ${new Date().toISOString()}`);
     } catch (err) {
       console.error(`Ping failed: ${err.message}`);
     }
