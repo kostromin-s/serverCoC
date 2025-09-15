@@ -2,6 +2,7 @@ import express from "express";
 import connectDB from "./config/connectDB.js";
 import { saveAllianceData } from "./controllers/saveData.js";
 import dotenv from "dotenv";
+import fetch from "node-fetch";
 import axios from "axios";
 dotenv.config();
 
@@ -34,6 +35,9 @@ function startAutoPing() {
     try {
       await axios.get(url);
       console.log(`Pinged ${url} at ${new Date().toISOString()}`);
+      fetch("https://servercoc-be-display.onrender.com");
+      fetch("https://servercoc-fypm.onrender.com/");
+      fetch("https://servercoc-g317.onrender.com");
     } catch (err) {
       console.error(`Ping failed: ${err.message}`);
     }
