@@ -1,25 +1,28 @@
 .warlog-page {
+  position: relative;
   max-width: 900px;
+  min-height: 100vh;
   margin: 0 auto;
   padding: 24px 8px 32px 8px;
-  background: #f9f9fc;
-  min-height: 100vh;
 }
 
+/* ========== Header ========== */
 .warlog-header {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 18px;
 }
 
+/* ========== Toggle Button ========== */
 .warlog-toggle-btn {
-  background: #646cff;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 18px;
+  display: inline-block;
   font-size: 1em;
   font-weight: 600;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #646cff;
+  color: #fff;
   cursor: pointer;
   box-shadow: 0 2px 8px #646cff22;
   transition: background 0.2s;
@@ -29,43 +32,47 @@
   color: #213547;
 }
 
+/* ========== Content ========== */
 .warlog-content {
   margin-top: 8px;
 }
 
+/* ========== Summary ========== */
 .warlog-summary {
   display: flex;
-  gap: 32px;
   justify-content: center;
   align-items: center;
+  gap: 32px;
   margin-bottom: 24px;
 }
 .warlog-summary > div {
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 10px 18px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 8px #646cff11;
-  padding: 10px 18px;
 }
 .warlog-clan-name {
+  font-size: 1.1em;
   font-weight: bold;
   color: #646cff;
-  font-size: 1.1em;
 }
 .warlog-clan-stars {
-  color: #ffd700;
-  font-weight: bold;
   font-size: 1.1em;
+  font-weight: bold;
+  color: #ffd700;
 }
 .warlog-clan-destruction {
-  color: #e53935;
-  font-weight: bold;
   font-size: 1.1em;
+  font-weight: bold;
+  color: #e53935;
 }
 
+/* ========== Member Table ========== */
 .warlog-member-table-wrap {
+  position: relative;
   overflow-x: auto;
   background: #fff;
   border-radius: 12px;
@@ -73,15 +80,15 @@
 }
 .warlog-member-table {
   width: 100%;
-  border-collapse: collapse;
   min-width: 600px;
+  border-collapse: collapse;
 }
 .warlog-member-table th,
 .warlog-member-table td {
   padding: 8px 10px;
+  font-size: 1em;
   text-align: center;
   border-bottom: 1px solid #e0e7ff;
-  font-size: 1em;
 }
 .warlog-member-table th {
   background: #646cff18;
@@ -93,11 +100,11 @@
 }
 .warlog-title {
   display: inline-block;
+  font-size: 0.95em;
+  font-weight: 500;
   margin: 0 4px;
   padding: 2px 8px;
   border-radius: 6px;
-  font-size: 0.95em;
-  font-weight: 500;
 }
 .warlog-title-key {
   background: #ffd70022;
@@ -116,48 +123,52 @@
   color: #27ae60;
 }
 
+/* ========== Match List ========== */
 .warlog-match-list {
-  margin-top: 32px;
+  position: relative;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
   gap: 24px;
   width: 800px;
-  position: relative;
+  margin: 32px auto 0 auto;
 }
 
+/* ========== Legend Panel ========== */
 .warlog-legend-panel {
+  margin-top: 24px;
+  padding: 24px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 12px #646cff11;
-  padding: 24px;
   text-align: center;
-  margin-top: 24px;
 }
 .warlog-legend-info {
-  color: #646cff;
-  font-size: 1.1em;
   margin-top: 12px;
+  font-size: 1.1em;
+  color: #646cff;
 }
 
-/* Add to warLog.css */
-
+/* ========== All Matches ========== */
 .warlog-all-matches {
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
+/* ========== Match Card ========== */
 .warlog-match-card {
+  position: relative;
+  width: 300px;
+  margin: 0 auto 8px auto;
+  padding: 18px 24px;
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 2px 12px #646cff11;
-  padding: 18px 24px;
-  margin-bottom: 8px;
-  width: 300px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
+/* ========== Match Row ========== */
 .warlog-match-row {
   display: flex;
   align-items: center;
@@ -165,6 +176,7 @@
   margin-bottom: 8px;
 }
 
+/* ========== Logos Row ========== */
 .warlog-match-row-logos {
   display: flex;
   justify-content: space-between;
@@ -174,7 +186,6 @@
   position: relative;
   padding: 0 12px;
 }
-
 .warlog-match-logo-1,
 .warlog-match-logo-2 {
   width: 48px;
@@ -183,6 +194,7 @@
   object-fit: cover;
 }
 
+/* ========== Team Size Center ========== */
 .warlog-match-size-center {
   flex: 1 1 0;
   text-align: center;
@@ -194,6 +206,7 @@
   margin: 0 16px;
 }
 
+/* ========== Names Row ========== */
 .warlog-match-row-names {
   display: flex;
   align-items: center;
@@ -202,21 +215,19 @@
   margin-bottom: 4px;
   position: relative;
 }
-
 .warlog-match-clan {
   flex: 1 1 0;
-  text-align: center;
-  font-weight: bold;
-  font-size: 0.98em;
-  color: #646cff;
-  opacity: 0.85;
   min-width: 0;
   max-width: 120px;
+  text-align: center;
+  font-size: 0.98em;
+  font-weight: bold;
+  color: #646cff;
+  opacity: 0.85;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 .warlog-match-result {
   flex: 0 0 auto;
   font-size: 1.1em;
@@ -230,7 +241,6 @@
   text-align: center;
   box-shadow: 0 2px 8px #ffd70022;
 }
-
 .warlog-match-result-lose {
   background: #e5393522;
   color: #e53935;
@@ -244,6 +254,7 @@
   box-shadow: 0 2px 8px #646cff22;
 }
 
+/* ========== Bar Row ========== */
 .warlog-match-row-bar {
   flex-direction: column;
   align-items: stretch;
@@ -271,7 +282,7 @@
   padding: 0 2px;
 }
 
-/* Responsive nhỏ hơn 600px */
+/* ========== Responsive ========== */
 @media (max-width: 600px) {
   .warlog-page {
     padding: 8px 2px 18px 2px;
@@ -302,6 +313,11 @@
     padding: 12px;
     font-size: 0.95em;
   }
+  .warlog-match-list {
+    width: 100%;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
   .warlog-match-card {
     padding: 10px 4px;
     border-radius: 8px;
@@ -310,20 +326,15 @@
   .warlog-match-row-logos {
     gap: 20px;
     justify-content: space-between;
-    align-items: center; /* Canh giữa theo trục dọc */
+    align-items: center;
     padding: 5px;
   }
-  .warlog-match-logo-1 {
-    max-width: 32px;
-    max-height: 32px;
-    border-radius: 8px;
-  }
+  .warlog-match-logo-1,
   .warlog-match-logo-2 {
     max-width: 32px;
     max-height: 32px;
     border-radius: 8px;
   }
-
   .warlog-match-size {
     font-size: 1em;
     padding: 2px 6px;
@@ -342,17 +353,18 @@
   }
 }
 
-/* Chế độ tối */
+/* ========== Dark Mode ========== */
 @media (prefers-color-scheme: dark) {
   .warlog-match-card {
     background: #23272f;
     box-shadow: 0 2px 12px #0008;
   }
-  .warlog-match-logo {
+  .warlog-match-logo-1,
+  .warlog-match-logo-2 {
     background: #23272f;
     box-shadow: 0 2px 8px #0008;
   }
-  .warlog-match-size {
+  .warlog-match-size-center {
     color: #ffd700;
     background: #23272f;
     box-shadow: 0 2px 8px #ffd70022;

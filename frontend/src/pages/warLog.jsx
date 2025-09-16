@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./warLog.css";
 
 export default function WarLogPage() {
@@ -29,7 +30,7 @@ function WarDetailPanel() {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-
+  const navigate = useNavigate();
   const fetchWarData = async (page) => {
     setLoading(true);
     try {
@@ -71,6 +72,17 @@ function WarDetailPanel() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [loading, hasMore]);
 
+  // Lọc warData để loại bỏ các trận bị lặp theo _id
+  const uniqueWarData = [];
+  const seenIds = new Set();
+  for (const item of warData) {
+    const id = item.warDetail?._id;
+    if (id && !seenIds.has(String(id))) {
+      uniqueWarData.push(item);
+      seenIds.add(String(id));
+    }
+  }
+
   if (!warData.length && loading) {
     return <div>Loading...</div>;
   }
@@ -80,9 +92,15 @@ function WarDetailPanel() {
 
   return (
     <div className="warlog-war-panel">
-      <h2>Hội chiến gần đây ({warData.length} trận)</h2>
+      <h2>Trận chiến gần đây</h2>
       <div className="warlog-match-list">
-        {warData.map(({ warDetail, warScore }, idx) => {
+        {uniqueWarData.map(({ warDetail, warScore }, idx) => {
+          // Điều kiện trận đang diễn ra hoặc chuẩn bị
+          const isActive =
+            warDetail.state === "inWar" ||
+            warDetail.state === "preparation" ||
+            (warDetail.preparationStartTime && !warDetail.endTime);
+
           // Dữ liệu clan và opponent
           const teamSize = warDetail.teamSize || 15;
           const clanA = warDetail.clan;
@@ -95,8 +113,12 @@ function WarDetailPanel() {
           const totalDestruction = destructionA + destructionB || 1;
 
           // Kết quả: win/lost/draw
-          let resultText = "Hòa";
+          let resultText = null;
           let resultClass = "draw";
+          if (warDetail.state === "warEnded") {
+            resultText = "Hòa";
+            resultClass = "draw";
+          }
           if (warScore?.result === "win") {
             resultText = "Thắng";
             resultClass = "win";
@@ -108,7 +130,12 @@ function WarDetailPanel() {
           return (
             <div
               key={`${warDetail._id || "noid"}-${idx}`}
-              className="warlog-match-card"
+              className={`warlog-match-card${
+                isActive ? " warlog-match-active" : ""
+              }`}
+              onClick={() =>
+                navigate("/target-page", { state: { warDetail, warScore } })
+              }
             >
               {/* Dòng 1: Logo - team size - Logo */}
               <div className="warlog-match-row warlog-match-row-logos">
@@ -133,6 +160,13 @@ function WarDetailPanel() {
                   className={`warlog-match-result warlog-match-result-${resultClass}`}
                 >
                   {resultText}
+                  {isActive && (
+                    <span className="warlog-match-status">
+                      {warDetail.state === "inWar"
+                        ? " Đang diễn ra"
+                        : " Chuẩn bị"}
+                    </span>
+                  )}
                 </span>
                 <span className="warlog-match-clan">{clanB.name}</span>
               </div>
@@ -200,10 +234,40 @@ function WarDetailPanel() {
           );
         })}
         {loading && (
-          <div style={{ textAlign: "center", margin: "16px" }}>Loading...</div>
+          <div
+            style={{
+              textAlign: "center",
+              margin: "16px auto",
+              width: "300px",
+              maxWidth: "90vw",
+              background: "#ffd70022",
+              color: "#e53935",
+              fontWeight: "bold",
+              borderRadius: "12px",
+              padding: "16px 0",
+              boxShadow: "0 2px 12px #e5393522",
+              letterSpacing: "1px",
+            }}
+          >
+            Loading...
+          </div>
         )}
         {!hasMore && (
-          <div style={{ textAlign: "center", margin: "16px" }}>
+          <div
+            style={{
+              textAlign: "center",
+              margin: "16px auto",
+              width: "300px",
+              maxWidth: "90vw",
+              background: "#ffd70022",
+              color: "#e53935",
+              fontWeight: "bold",
+              borderRadius: "12px",
+              padding: "16px 0",
+              boxShadow: "0 2px 12px #e5393522",
+              letterSpacing: "1px",
+            }}
+          >
             Không còn trận nào nữa.
           </div>
         )}
