@@ -6,8 +6,8 @@ const API_URL = `${
   import.meta.env.VITE_SERVER_URL
 }clan/playerscores/%23UPQJR8JR`;
 const SCORE_TYPES = [
-  { key: "warPoints", label: "Lực chiến" },
   { key: "InfluencePoints", label: "Điểm ảnh hưởng" },
+  { key: "warPoints", label: "Lực chiến" },
   { key: "activepoints", label: "Điểm hoạt động" },
   { key: "clanGamePoints", label: "Điểm sự kiện" },
 ];

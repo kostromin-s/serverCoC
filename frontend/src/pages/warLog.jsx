@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Loading from "../pages/Loading.jsx";
 import "./warLog.css";
 
 export default function WarLogPage() {
@@ -84,7 +85,7 @@ function WarDetailPanel() {
   }
 
   if (!warData.length && loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   if (!warData.length) {
     return <div>No war data available.</div>;
@@ -134,7 +135,7 @@ function WarDetailPanel() {
                 isActive ? " warlog-match-active" : ""
               }`}
               onClick={() =>
-                navigate("/target-page", { state: { warDetail, warScore } })
+                navigate("/war-detail", { state: { warDetail, warScore } })
               }
             >
               {/* Dòng 1: Logo - team size - Logo */}

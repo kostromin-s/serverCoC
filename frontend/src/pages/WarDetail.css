@@ -1,0 +1,303 @@
+.war-detail {
+  background: #fffde7;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 24px 18px;
+  min-height: 120px;
+  position: relative;
+}
+
+/* ========== Responsive: màn hình dọc (mobile/tablet) ========== */
+@media (max-width: 600px) {
+  .war-detail {
+    padding: 12px 4px;
+    min-width: 0;
+  }
+  .war-detail-header {
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1em;
+    margin-bottom: 8px;
+  }
+  .war-detail-score {
+    gap: 6px;
+    font-size: 1em;
+    margin-bottom: 6px;
+  }
+  .war-detail-columns {
+    flex-direction: row !important;
+    gap: 6px;
+    align-items: stretch;
+  }
+  .war-detail-col {
+    min-width: 0;
+    max-width: 140px;
+    width: 100%;
+  }
+  .war-detail-member {
+    font-size: 0.98em;
+    padding: 6px 4px;
+    max-width: 140px !important;
+  }
+  .war-detail-logo {
+    width: 32px;
+    height: 32px;
+  }
+  .war-detail-th {
+    opacity: 0.5;
+  }
+  .war-detail-name {
+    max-width: 120px;
+    font-size: 0.95em;
+  }
+}
+
+/* ========== Dark mode cho browser ========== */
+@media (prefers-color-scheme: dark) {
+  .war-detail {
+    background: #23272f;
+    box-shadow: 0 2px 8px #0008;
+  }
+  .war-detail-logo {
+    background: #23272f;
+    border-color: #ffd600;
+  }
+  .war-detail-name {
+    color: #ffd600;
+  }
+  .war-detail-score {
+    color: #ffd600;
+  }
+  .war-detail-result {
+    color: #ffd600;
+  }
+  .war-detail-member {
+    background: #23272f;
+    box-shadow: 0 1px 4px #0008;
+    color: #fff;
+  }
+  .war-detail-member-name {
+    color: #ffd600;
+  }
+  .war-detail-th {
+    background: #23272f;
+    border-color: #ffd600;
+  }
+}
+
+.war-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  font-size: 1.2em;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.war-detail-logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #ffd600;
+}
+
+.war-detail-name {
+  max-width: 220px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 1em;
+  text-overflow: ellipsis;
+}
+
+.war-detail-score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  font-size: 1.1em;
+  margin-bottom: 8px;
+}
+
+.war-detail-result {
+  text-align: center;
+  font-size: 1.15em;
+  font-weight: bold;
+  margin-bottom: 18px;
+  color: #ff9800;
+}
+
+.war-detail-columns {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row !important; /* Luôn luôn là hàng ngang */
+  padding: 10px;
+}
+
+.war-detail-col {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 2px;
+}
+
+.war-detail-member {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 2px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 1px 4px #0001;
+  word-break: break-word;
+  overflow: hidden;
+  transition: background 0.2s, color 0.2s;
+}
+
+.war-detail-member-info {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.war-detail-member-name {
+  font-weight: 600;
+  font-size: 1em;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.war-detail-member-sub {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  min-width: 0;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.war-detail-th {
+  position: absolute;
+  left: 80%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+  max-height: 100%;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  opacity: 0.98;
+}
+
+/* Đảm bảo các nội dung khác nằm trên hình nền */
+.war-detail-member-name,
+.war-detail-member-sub,
+.war-detail-titles,
+.badge-icon {
+  position: relative;
+  z-index: 2;
+}
+
+.war-detail-titles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 0;
+  max-width: 10px;
+  max-height: 10px;
+}
+
+.badge-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 2px;
+  font-size: 1em;
+  font-weight: 500;
+  background: #fffde7;
+  color: #ff9800;
+  border-radius: 6px;
+  padding: 2px 4px;
+  box-shadow: 0 1px 4px #0001;
+  max-width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.badge-icon img {
+  width: 18px;
+  height: 18px;
+  margin-right: 2px;
+  vertical-align: middle;
+  z-index: 10;
+}
+
+/* Responsive: màn hình nhỏ hoặc dọc */
+@media (max-width: 600px), (orientation: portrait) {
+  .war-detail-member {
+    font-size: 0.98em;
+    padding: 6px 4px;
+    min-width: 0;
+    max-width: 140px !important;
+    margin: 0 1px;
+    border-radius: 8px;
+  }
+  .war-detail-col {
+    max-width: 140px;
+    padding: 0 1px;
+  }
+  .war-detail-member-name {
+    font-size: 0.97em;
+    max-width: 110px;
+  }
+  .war-detail-member-sub {
+    gap: 4px;
+    max-width: 120px;
+  }
+  .badge-icon {
+    font-size: 0.95em;
+    max-width: 48px;
+    padding: 2px 2px;
+  }
+  .war-detail-th {
+    opacity: 0.5;
+  }
+}
+
+/* Chế độ dark cho browser */
+@media (prefers-color-scheme: dark) {
+  .war-detail-member {
+    background: #23272f;
+    color: #ffd600;
+    box-shadow: 0 1px 4px #0008;
+  }
+  .war-detail-member-name {
+    color: #ffd600;
+  }
+  .war-detail-th {
+    background: #23272f;
+    border-color: #ffd600;
+  }
+  .badge-icon {
+    background: #23272f;
+    color: #ffd600;
+    box-shadow: 0 1px 4px #ffd60022;
+  }
+}

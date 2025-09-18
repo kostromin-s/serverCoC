@@ -5,6 +5,8 @@ import ClanInfo from "../src/pages/ClanInfo.jsx";
 import Navbar from "../src/components/Nav/Navbar.jsx";
 import MemberList from "./pages/MemberList.jsx";
 import WarLogPage from "./pages/warLog.jsx";
+import WarDetail from "./pages/WarDetail.jsx";
+import NotFound from "./pages/NotFound.jsx";
 import "./index.css";
 
 function App() {
@@ -18,7 +20,8 @@ function App() {
           <Route path="/claninfo" element={<ClanInfo />} />
           <Route path="/memberlist" element={<MemberList />} />
           <Route path="/warlog" element={<WarLogPage />} />
-          <Route path="*" element={<div>404 Not Found</div>} />
+          <Route path="/war-detail" element={<WarDetail />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </>
     </Router>
