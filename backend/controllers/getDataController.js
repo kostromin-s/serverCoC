@@ -57,25 +57,33 @@ export async function getClanTroops(req, res) {
   }
 }
 
-//api lấy dữ liệu điểm số của người chơi trong clan
+// api lấy dữ liệu điểm số của người chơi trong clan
 export async function getPlayerScores(req, res) {
   try {
     const clanTag = req.params.tag;
-    const playerScores = [];
+
+    // tìm clan theo clantag
     const clan = await PlayerSV01.findOne({ clantag: clanTag });
     if (!clan) {
       return res.status(404).json({ error: "Clan not found" });
     }
-    for (const player of clan.player) {
-      //lấy điểm số mới nhất của từng player
-      const scores = await DaylyPoint.find({
-        tag: player.tag,
-        clantag: clanTag,
+
+    // chạy song song tất cả query lấy điểm số mới nhất của từng player
+    const playerScores = await Promise.all(
+      clan.player.map(async (player) => {
+        const scores = await DaylyPoint.find(
+          { tag: player.tag, clantag: clanTag },
+          { date: 1, warPoints: 1, InfluencePoints: 1, activepoints: 1 } // projection: chỉ lấy field cần thiết
+        )
+          .sort({ date: -1 })
+          .limit(1);
+
+        return {
+          player: player.name,
+          scores: scores[0] || null, // nếu không có dữ liệu thì trả null
+        };
       })
-        .sort({ date: -1 })
-        .limit(1);
-      playerScores.push({ player: player.name, scores });
-    }
+    );
 
     res.json(playerScores);
   } catch (err) {
