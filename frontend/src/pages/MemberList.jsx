@@ -5,6 +5,7 @@ import Loading from "../pages/Loading.jsx";
 const API_URL = `${
   import.meta.env.VITE_SERVER_URL
 }clan/playerscores/%23UPQJR8JR`;
+
 const SCORE_TYPES = [
   { key: "InfluencePoints", label: "Điểm ảnh hưởng" },
   { key: "warPoints", label: "Lực chiến" },
@@ -14,14 +15,17 @@ const SCORE_TYPES = [
 
 export default function MemberList() {
   const [members, setMembers] = useState([]);
-  const [sortType, setSortType] = useState("warPoints");
+  const [sortType, setSortType] = useState("InfluencePoints");
   const [sortOrder, setSortOrder] = useState("desc");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(API_URL)
       .then((res) => res.json())
-      .then((data) => setMembers(data))
+      .then((data) => {
+        console.log("Fetched data:", data);
+        setMembers(data);
+      })
       .catch(() => setMembers([]))
       .finally(() => setLoading(false));
   }, []);
@@ -29,7 +33,7 @@ export default function MemberList() {
   // Chuẩn hóa dữ liệu và xếp hạng
   const sortedMembers = [...members].sort((a, b) => {
     const getScore = (m) => {
-      const scoreObj = m.scores?.[0]?.[sortType];
+      const scoreObj = m.scores?.[sortType];
       return scoreObj && !scoreObj.hidden ? scoreObj.value : -Infinity;
     };
     return sortOrder === "desc"
@@ -87,7 +91,7 @@ export default function MemberList() {
             </thead>
             <tbody>
               {sortedMembers.map((mem, idx) => {
-                const scoreObj = mem.scores?.[0];
+                const scoreObj = mem.scores;
                 const s = scoreObj?.[sortType];
                 return (
                   <tr key={scoreObj?._id || mem.player}>

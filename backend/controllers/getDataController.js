@@ -73,7 +73,13 @@ export async function getPlayerScores(req, res) {
       clan.player.map(async (player) => {
         const scores = await DaylyPoint.find(
           { tag: player.tag, clantag: clanTag },
-          { date: 1, warPoints: 1, InfluencePoints: 1, activepoints: 1 } // projection: chỉ lấy field cần thiết
+          {
+            date: 1,
+            warPoints: 1,
+            InfluencePoints: 1,
+            activepoints: 1,
+            clanGamePoints: 1,
+          } // projection: chỉ lấy field cần thiết
         )
           .sort({ date: -1 })
           .limit(1);
