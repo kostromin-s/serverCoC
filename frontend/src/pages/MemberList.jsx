@@ -22,10 +22,7 @@ export default function MemberList() {
   useEffect(() => {
     fetch(API_URL)
       .then((res) => res.json())
-      .then((data) => {
-        console.log("Fetched data:", data);
-        setMembers(data);
-      })
+      .then((data) => setMembers(data))
       .catch(() => setMembers([]))
       .finally(() => setLoading(false));
   }, []);
